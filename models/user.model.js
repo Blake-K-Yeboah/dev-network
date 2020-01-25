@@ -11,6 +11,10 @@ const UserSchema = new Schema({
         type: String,
         required: true
     },
+    username: {
+        type: String,
+        required: true
+    },
     email: {
         type: String,
         required: true
@@ -34,10 +38,6 @@ const UserSchema = new Schema({
     headerImg: {
         type: String,
         default: 'default.jpg'
-    },
-    preferredTheme: {
-        type: String,
-        default: 'light'
     },
     messageGroups: {
         type: Array,
