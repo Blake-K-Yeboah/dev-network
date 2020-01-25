@@ -4,20 +4,21 @@ const express = require('express');
 // Require Mongoose 
 const mongoose = require('mongoose');
 
+// Require body-parser
+const bodyParser = require('body-parser');
+
+// Require passport
+const passport = require('passport');
+
 // Require User Router
 const users = require('./routes/api/user.routes');
 
 // Initialize Express
 const app = express();
 
-// Default Route
-app.get('/', (req, res) => {
-    res.send('Hello World');
-});
-
-// User Route
-app.use('/api/users', users);
-
+// BodyParser middleware
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
 
 // DB Config
 const db = require("./config/keys").mongoURI;
@@ -30,6 +31,16 @@ mongoose
     )
     .then(() => console.log("MongoDB successfully connected"))
     .catch(err => console.log(err));
+
+
+// Passport middleware
+app.use(passport.initialize());
+
+// Passport config
+require("./config/passport")(passport);
+
+// User Route
+app.use('/api/users', users);
 
 // Define Port
 const port = process.env.PORT || 5000;
