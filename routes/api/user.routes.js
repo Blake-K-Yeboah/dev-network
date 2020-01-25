@@ -1,7 +1,15 @@
 const express = require('express');
-
 const router = express.Router();
+const bcrypt = require('bcryptjs');
+const jwt = require('jsonwebtoken');
+const keys = require("../../config/keys");
 
+
+// Import Validation Functions
+const valdiateRegisterinput = require('../../validation/register');
+const validateLoginInput = require('../../validation/login');
+
+// Import User Model
 const User = require('../../models/user.model');
 
 // Default User Route
@@ -20,6 +28,7 @@ router.get('/:id?', (req, res) => {
             return res.json(user);
 
         });
+
     } else {
 
         // Return all users
@@ -29,6 +38,112 @@ router.get('/:id?', (req, res) => {
 
     }
 
+});
+
+router.post('/register', (req, res) => {
+
+    // Validation
+    const { errors, isValid } = valdiateRegisterinput(req.body);
+
+    // Check Validation
+    if (isValid === false) {
+        return res.status(400).json(errors);
+    }
+
+    User.findOne({ $or: [{ email: req.body.email }, { username: req.body.username }] }).then(user => {
+
+        // Check if user exists
+        if (user) {
+            res.status(400).json({ error: 'A user with email or username already exists' });
+        } else {
+            // Create new user model
+            const newUser = new User({
+                firstname: req.body.firstname,
+                lastname: req.body.lastname,
+                email: req.body.email,
+                password: req.body.password,
+                username: req.body.username
+            });
+
+            // Hash Password before saving in db
+            bcrypt.genSalt(10, (err, salt) => {
+                bcrypt.hash(newUser.password, salt, (err, hash) => {
+                    if (err) throw err;
+
+                    // Change users password to hashed password
+                    newUser.password = hash;
+
+                    // Save New User to database
+                    newUser.save().then(user => res.json(user)).catch(err => console.log(err));
+                })
+            })
+        }
+    })
+});
+
+router.post('/login', (req, res) => {
+
+    // Form validation
+    const { errors, isValid } = validateLoginInput(req.body);
+
+    // Check validation
+    if (!isValid) {
+        return res.status(400).json(errors);
+    }
+
+    const email = req.body.email;
+    const password = req.body.password;
+
+    // Find user by email
+    User.findOne({ email }).then(user => {
+
+        // Check if user exists
+        if (!user) {
+            return res.status(404).json({ emailnotfound: "Email not found" });
+        }
+
+        // Check password
+        bcrypt.compare(password, user.password).then(isMatch => {
+            if (isMatch) {
+                // User matched
+
+                // Create JWT Payload
+                const payload = {
+                    id: user.id,
+                    firstname: user.firstname,
+                    lastname: user.lastname,
+                    username: user.username,
+                    bio: user.bio,
+                    email: user.email,
+                    createdOn: user.createdON,
+                    profileIcon: user.profileIcon,
+                    headerImg: user.headerImg,
+                    messageGroups: user.messageGroups,
+                    github: user.github,
+                    portfolio: user.portfolio
+                };
+
+                // Sign token
+                jwt.sign(
+                    payload,
+                    keys.secretOrKey,
+                    {
+                        expiresIn: 31556926 // 1 year in seconds
+                    },
+                    (err, token) => {
+                        res.json({
+                            success: true,
+                            token: "Bearer " + token
+                        });
+                    }
+                );
+            } else {
+                return res
+                    .status(400)
+                    .json({ passwordincorrect: "Password incorrect" });
+            }
+        });
+    });
 });
 
 module.exports = router;
