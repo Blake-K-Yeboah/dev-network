@@ -1,7 +1,7 @@
 import React from 'react';
 
 // Import Style
-import './App.css';
+import './App.scss';
 
 // Import Stores
 import { authStore } from './stores/authStore';
