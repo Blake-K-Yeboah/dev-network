@@ -1,6 +1,7 @@
 import React from 'react'
-import Navbar from '../../layout/Navbar/Navbar'
+import Navbar from '../../layout/Navbar'
 import Header from './Header'
+import Footer from '../../layout/Footer'
 
 const Home = () => {
     return (
@@ -8,6 +9,7 @@ const Home = () => {
             <Navbar />
             <div className="container">
                 <Header />
+                <Footer />
             </div>
         </>
     )
