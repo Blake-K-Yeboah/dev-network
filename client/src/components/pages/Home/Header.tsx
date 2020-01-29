@@ -21,11 +21,11 @@ const Header = inject('authStore')(
 
                 <div className="btn-group">
                     <NavLink to="/register">
-                        <button className="btn btn-primary">Create an Account</button>
+                        <button className="btn primary">Create an Account</button>
                     </NavLink>
                     <span className="or">OR</span>
                     <NavLink to="/login">
-                        <button className="btn btn-outline">Login</button>
+                        <button className="btn outline">Login</button>
                     </NavLink>
                 </div>
             </div>
