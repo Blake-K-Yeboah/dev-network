@@ -1,6 +1,16 @@
 /* Import Google Fonts */
 @import url('https://fonts.googleapis.com/css?family=Raleway&display=swap');
 
+//////////////////////////////   Meida Query Mixins  //////////////////////////////
+
+@mixin large {
+    @media screen and (max-width: 1302px) {
+        @content;
+    }
+}
+
+////////////////////////////// Define Variables  //////////////////////////////
+
 $primaryColor: #0099FF;
 $darkGrey: #3E3E3E;
 $lighterGrey: #747474;
@@ -27,6 +37,11 @@ body {
     margin: 75px auto 0 auto;
     position:relative;
 
+    @include large {
+        width: 85vw;
+        margin: 40px auto 0 auto;
+    }
+
     .nav-brand {
         color: #fff;
         font-size: 2rem;
@@ -36,6 +51,10 @@ body {
 
         .bold {
             font-weight: bold;
+        }
+
+        @include large {
+            font-size: 1.75rem;
         }
     }
 
@@ -63,6 +82,10 @@ body {
                     color: $primaryColor;
                     text-decoration: none;
                 }
+
+                @include large {
+                    font-size: 1rem;
+                }
             }
         }
 
@@ -77,6 +100,10 @@ body {
     height: 77.5vh;
     position:absolute;
     bottom: 0;
+
+    @include large {
+        height:80vh;
+    }
 }
 
 //////////////////////////////  Button Styles  //////////////////////////////
@@ -90,6 +117,12 @@ body {
     cursor: pointer;
     transition: .3s ease-in-out;
     border: 1px solid $primaryColor;
+
+    @include large {
+        padding: .75em;
+        width:150px;
+        font-size: .85rem;
+    }
 
     &.primary {
         color: #fff;
@@ -126,12 +159,21 @@ body {
     box-shadow: 0px 0px 20px rgba(0,0,0,0.025);
     border-radius: 20px;
 
+    @include large {
+        top: -25px;
+        height:  60vh;
+    }
+
     .title {
         text-align:center;
         color: $darkGrey;
         font-weight: lighter;
         padding: 1.5em 0 0.75em 0;
         font-size: 3rem;
+
+        @include large {
+            font-size: 2rem;
+        }
     }
 
     .description {
@@ -142,15 +184,39 @@ body {
         font-weight:lighter;
         font-size: 1.5rem;
         line-height: 1.75em;
+
+        @include large {
+            font-size: 1.2rem;
+        }
     }
 
     .btn-group {
         margin: 75px auto 0 auto;
         width:525px;
 
+        @include large {
+            margin: 50px auto 0 auto;
+            width: 390px;
+        }
+
         .or {
             padding: 20px 35px;
+
+            @include large {
+                font-size: .85rem;
+            }
         }
+    }
+
+    &.not-found {
+        height: 40vh;
+
+        .btn {
+            margin-top: 3em;
+            position:relative;
+            left:50%;
+            transform:translateX(-50%)
+;        }
     }
 }
 
