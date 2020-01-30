@@ -14,19 +14,23 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 
 // Import Pages
 import Home from './components/pages/Home/Home';
+import NotFound from './components/pages/NotFound/NotFound';
 
 const App: React.FC = () => {
   return (
     <Router>
 
-      <Switch>
-        <Provider authStore={authStore}>
+      <Provider authStore={authStore}>
+
+        <Switch>
 
           <Route exact path="/" component={Home} />
 
-        </Provider>
+          <Route component={NotFound} />
 
-      </Switch>
+        </Switch>
+
+      </Provider>
 
     </Router>
   );
