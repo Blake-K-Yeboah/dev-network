@@ -3,9 +3,7 @@ import { inject, observer } from 'mobx-react';
 import { NavLink } from 'react-router-dom';
 
 const Header = inject('authStore')(
-    observer(({ authStore }) => {
-
-        console.log(authStore.token);
+    observer(({ authStore, page }) => {
 
         const loggedIn = (
             <div className="header">
@@ -30,8 +28,22 @@ const Header = inject('authStore')(
                 </div>
             </div>
         )
+
+        const pageRoute: string = window.location.pathname;
+
+
+        const notFound = (
+            <div className="header not-found">
+                <h1 className="title">404 - Page Not Found</h1>
+                <p className="description">There is no page associated with the path '{pageRoute as string}' </p>
+                <NavLink to="/">
+                    <button className="btn primary">Redirect To Home</button>
+                </NavLink>
+            </div>
+        )
+
         return (
-            <>{authStore.isAuthenticated ? loggedIn : loggedOut}</>
+            <>{authStore.isAuthenticated && page !== "notfound" ? loggedIn : page !== "notfound" ? loggedOut : notFound}</>
         )
 
     }));
