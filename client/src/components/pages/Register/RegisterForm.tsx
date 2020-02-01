@@ -1,15 +1,21 @@
-import React, { useState } from 'react'
+import React, { useState } from 'react';
+
+import axios from 'axios';
+
+import { FaEye } from 'react-icons/fa';
 
 const RegisterForm = () => {
 
+    // User Input State
     const [userInput, setUserInput] = useState({
-        firstName: '',
-        lastName: '',
+        firstname: '',
+        lastname: '',
         username: '',
         email: '',
         password: ''
     });
 
+    // Input Event Handlers
     const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setUserInput({ ...userInput, [e.target.id]: e.target.value });
         if (e.target.value !== '') {
@@ -27,23 +33,55 @@ const RegisterForm = () => {
         if (e.target.previousElementSibling) e.target.previousElementSibling.classList.remove('focus');
     }
 
+    // Register Handler
+    const registerHandler = (e: React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
+        if (userInput.username !== '') userInput.username = `@${userInput.username}`;
+
+        axios.post('/api/users/register', userInput).then(res => {
+            console.log("Successfully registered!")
+        }).catch(err => {
+            console.log(err);
+        })
+    }
+
+    // Password Ref 
+    const passwordRef = React.useRef<HTMLInputElement>(null);
+
+    // Show And Hide Password Functions
+    const togglePasswordType = (el: HTMLInputElement | null, type: string) => {
+        if (el) el.type = type;
+    }
+
+    const showPassword = () => {
+        if (passwordRef !== null) {
+            togglePasswordType(passwordRef.current, 'text');
+        }
+    }
+
+    const hidePassword = () => {
+        if (passwordRef !== null) {
+            togglePasswordType(passwordRef.current, 'password');
+        }
+    }
+
     return (
         <div className="header register">
             <h1 className="title">Create an Account</h1>
-            <form className="form">
+            <form className="form" onSubmit={registerHandler}>
                 <div className="form-group form-grid">
                     <div className="input-container">
-                        <label htmlFor="firstName" className="input-label">First Name</label>
-                        <input type="text" className="input" id="firstName" onChange={onChange} value={userInput.firstName} onBlur={onBlur} onFocus={onFocus} />
+                        <label htmlFor="firstname" className="input-label">First Name</label>
+                        <input type="text" className="input" id="firstname" onChange={onChange} value={userInput.firstname} onBlur={onBlur} onFocus={onFocus} />
                     </div>
                     <div className="input-container">
-                        <label htmlFor="lastName" className="input-label">Last Name</label>
-                        <input type="text" className="input" id="lastName" onChange={onChange} value={userInput.lastName} onBlur={onBlur} onFocus={onFocus} />
+                        <label htmlFor="lastname" className="input-label">Last Name</label>
+                        <input type="text" className="input" id="lastname" onChange={onChange} value={userInput.lastname} onBlur={onBlur} onFocus={onFocus} />
                     </div>
                 </div>
                 <div className="form-group">
                     <div className="input-container">
-                        <label htmlFor="username" className="input-label">@Username</label>
+                        <label htmlFor="username" className="input-label">Username</label>
                         <input type="text" className='input' id="username" onChange={onChange} value={userInput.username} onBlur={onBlur} onFocus={onFocus} />
                     </div>
                 </div>
@@ -56,7 +94,8 @@ const RegisterForm = () => {
                 <div className="form-group">
                     <div className="input-container">
                         <label htmlFor="password" className="input-label">Password</label>
-                        <input type="text" className='input' id="password" onChange={onChange} value={userInput.password} onBlur={onBlur} onFocus={onFocus} />
+                        <input type="password" className='input' id="password" onChange={onChange} value={userInput.password} onBlur={onBlur} onFocus={onFocus} ref={passwordRef} />
+                        <FaEye className="eyeIcon" onMouseDown={showPassword} onMouseUp={hidePassword}/>
                     </div>
                 </div>
                 <button type="submit" className="btn primary submit-btn">Create an Account</button>
