@@ -15,6 +15,7 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 // Import Pages
 import Home from './components/pages/Home/Home';
 import NotFound from './components/pages/NotFound/NotFound';
+import Register from './components/pages/Register/Register';
 
 const App: React.FC = () => {
   return (
@@ -25,6 +26,8 @@ const App: React.FC = () => {
         <Switch>
 
           <Route exact path="/" component={Home} />
+
+          <Route exact path="/register" component={Register} />
 
           <Route component={NotFound} />
 
