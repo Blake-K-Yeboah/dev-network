@@ -54,7 +54,7 @@ router.post('/register', (req, res) => {
 
         // Check if user exists
         if (user) {
-            res.status(400).json({ error: 'A user with email or username already exists' });
+            res.status(400).json({ username: 'Username already exists', email: 'Email Already Exists' });
         } else {
             // Create new user model
             const newUser = new User({
