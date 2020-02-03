@@ -3,6 +3,8 @@ import { observable, action } from 'mobx';
 // Import JWT decode to decode jwt token
 import jwt_decode from 'jwt-decode';
 
+import { Iuser } from '../types';
+
 class authstore {
 
     // Store JWT Token
@@ -21,6 +23,18 @@ class authstore {
     @action
     setError(err: string) {
         this.error = err;
+    }
+
+    // Action to set current user
+    @action
+    setCurrentUser(user: Iuser) {
+        this.user = user;
+    }
+
+    // Action to set token
+    @action
+    setToken(token: string) {
+        this.token = token;
     }
 
 }
