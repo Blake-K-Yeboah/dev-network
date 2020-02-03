@@ -35,6 +35,7 @@ class authstore {
     @action
     setToken(token: string) {
         this.token = token;
+        this.isAuthenticated = true;
     }
 
 }
