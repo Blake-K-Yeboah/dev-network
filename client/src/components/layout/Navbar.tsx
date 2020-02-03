@@ -2,10 +2,12 @@ import React from 'react'
 
 import { NavLink } from 'react-router-dom';
 
+import { GoCode } from 'react-icons/go';
+
 const Navbar: React.FC = props => {
     return (
         <div className="navbar">
-            <h1 className="nav-brand"><span className="bold">Dev</span>Network</h1>
+            <h1 className="nav-brand"><GoCode className="icon" /> <span className="bold">Dev</span>Network</h1>
             <ul className="nav-list">
                 <li className="nav-item">
                     <NavLink to="/" className="nav-link">Home</NavLink>
