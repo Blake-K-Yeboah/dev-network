@@ -1,6 +1,7 @@
 import React from 'react'
 import { inject, observer } from 'mobx-react';
 import { NavLink } from 'react-router-dom';
+import { MdError } from 'react-icons/md';
 
 const Header = inject('authStore')(
     observer(({ authStore, page }) => {
@@ -34,7 +35,7 @@ const Header = inject('authStore')(
 
         const notFound = (
             <div className="header not-found">
-                <h1 className="title">404 - Page Not Found</h1>
+                <h1 className="title"><MdError style={{ top: '10px', marginRight: '10px', position: 'relative' }} /> 404 - Page Not Found</h1>
                 <p className="description">There is no page associated with the path '{pageRoute as string}' </p>
                 <NavLink to="/">
                     <button className="btn primary">Redirect To Home</button>
