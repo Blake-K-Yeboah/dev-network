@@ -5,7 +5,7 @@ import axios from 'axios';
 import { FaEye } from 'react-icons/fa';
 import { inject, observer } from 'mobx-react';
 
-import { useHistory } from 'react-router-dom';
+import { useHistory, NavLink } from 'react-router-dom';
 
 import jwt_decode from 'jwt-decode';
 
@@ -117,6 +117,8 @@ const RegisterForm = inject('authStore')(observer(({ authStore }) => {
                     </div>
                 </div>
                 <button type="submit" className="btn primary submit-btn">Login</button>
+                <br /><br />
+                <NavLink className='link' to="/register">New? Create an Account</NavLink>
             </form>
         </div>
     )
