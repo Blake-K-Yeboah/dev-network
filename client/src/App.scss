@@ -213,22 +213,28 @@ body {
         }
     }
 
+    
+    .link {
+        color: $primaryColor;
+        text-decoration: none;
+        position:absolute;
+        left:50%;
+        transform:translateX(-50%);
+        bottom: 45px;
+        cursor: pointer;
+        
+        &:hover {
+            text-decoration:underline;
+        }
+
+        &.special {
+            bottom: 35px;
+        }
+    }
+
     .form {
         width: 75%;
         margin: 0 auto 0 auto;
-
-        .link {
-            color: $primaryColor;
-            text-decoration: none;
-            position:absolute;
-            left:50%;
-            transform:translateX(-50%);
-            bottom: 45px;
-
-            &:hover {
-                text-decoration:underline;
-            }
-        }
 
         .form-group {
             margin: 2em 0;
