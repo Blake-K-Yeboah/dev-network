@@ -1,14 +1,43 @@
 import React from 'react'
 import { inject, observer } from 'mobx-react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useHistory } from 'react-router-dom';
 import { MdError } from 'react-icons/md';
+import Axios from 'axios';
 
 const Header = inject('authStore')(
     observer(({ authStore, page }) => {
 
+        let history = useHistory();
+
+        // Handle Logout
+        const logOutHandler = () => {
+
+            localStorage.removeItem("jwtToken");
+
+            delete Axios.defaults.headers.common["Authorization"];
+
+            authStore.setCurrentUser(null);
+
+            history.push('/login');
+        }
+
         const loggedIn = (
             <div className="header">
-                <h1>Hello</h1>
+                <h1 className="title">Welcome Back!</h1>
+
+                <p className="description">Welcome back to developer network. Hope you're having a great day! You can explore the latest projects by clicking the button below. Alternatively you can view your profile. Remember to keep calm and coding! :&#41;</p>
+
+                <div className="btn-group">
+                    <NavLink to="/projects">
+                        <button className="btn primary">Latest Projects</button>
+                    </NavLink>
+                    <span className="or">OR</span>
+                    <NavLink to={`/profile/${authStore.user ? authStore.user.username.substring(1) : ''}`}>
+                        <button className="btn outline">Your Profile</button>
+                    </NavLink>
+                </div>
+
+                <span className="link special" onClick={logOutHandler}>Logout</span>
             </div>
         )
 
@@ -31,7 +60,6 @@ const Header = inject('authStore')(
         )
 
         const pageRoute: string = window.location.pathname;
-
 
         const notFound = (
             <div className="header not-found">
