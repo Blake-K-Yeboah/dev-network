@@ -19,6 +19,7 @@ import Register from './components/pages/Register/Register';
 import Login from './components/pages/Login/Login';
 
 const App: React.FC = () => {
+
   return (
     <Router>
 
@@ -31,6 +32,7 @@ const App: React.FC = () => {
           <Route exact path="/register" component={Register} />
 
           <Route exact path="/login" component={Login} />
+
           <Route component={NotFound} />
 
         </Switch>
