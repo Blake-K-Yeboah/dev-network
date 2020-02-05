@@ -1,4 +1,5 @@
 import React from 'react'
+import { NavLink } from 'react-router-dom'
 
 const AboutContent = () => {
     return (
@@ -9,9 +10,10 @@ const AboutContent = () => {
 
                 <img src="/img/logo.jpg" className="logo" alt="DevNetwork Logo" />
 
-                <p className="description right">DevNetwork is a social network built with MERN stack that allows developers to share their projects andd write posts about their favourite technologies. It was developed by Blake Yeboah, a fullstack developer based in Austraalia.</p>
-            </div>
+                <p className="description ">DevNetwork is a social network built with MERN stack that allows developers to share their projects andd write posts about their favourite technologies. It was developed by Blake Yeboah, a fullstack developer based in Austraalia.
+            <NavLink to="/" className="link special">Go Back Home</NavLink> </p>
 
+            </div>
         </div>
     )
 }
