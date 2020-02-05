@@ -27,8 +27,9 @@ class authstore {
 
     // Action to set current user
     @action
-    setCurrentUser(user: Iuser) {
+    setCurrentUser(user: Iuser | null) {
         this.user = user;
+        if (user === null) this.isAuthenticated = false;
     }
 
     // Action to set token
