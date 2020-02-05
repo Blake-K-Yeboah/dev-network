@@ -83,7 +83,7 @@ body {
                     text-decoration: underline;
                 }
 
-                &.active {
+                &.active-link {
                     color: $primaryColor;
                     text-decoration: none;
                 }
@@ -193,6 +193,10 @@ body {
         @include large {
             font-size: 1.2rem;
         }
+
+        &.right {
+            text-align: left;
+        }
     }
 
     .btn-group {
@@ -213,7 +217,21 @@ body {
         }
     }
 
-    
+    .header-grid {        
+        display: grid;
+        grid-template-columns: 1fr 3fr;
+        width: 85%;
+        margin: 2em auto 0 auto;
+
+        .logo {
+            width: 100%;
+            border-radius: 50%;
+            position:relative;
+            top:50%;
+            transform: translateY(-50%);
+        }
+    }
+
     .link {
         color: $primaryColor;
         text-decoration: none;
