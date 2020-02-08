@@ -5,6 +5,7 @@ import './App.scss';
 
 // Import Stores
 import { authStore } from './stores/authStore';
+import { projectStore } from './stores/projectStore';
 
 // Import Provider
 import { Provider } from 'mobx-react';
@@ -25,7 +26,7 @@ const App: React.FC = () => {
   return (
     <Router>
 
-      <Provider authStore={authStore}>
+      <Provider authStore={authStore} projectStore={projectStore}>
 
         <Switch>
 
