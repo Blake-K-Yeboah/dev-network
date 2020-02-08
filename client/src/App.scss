@@ -251,9 +251,13 @@ body {
     }
 
     .form {
-        width: 75%;
+        width: 50%;
         margin: 0 auto 0 auto;
 
+        @include large {
+            width: 75%;
+        }
+        
         .form-group {
             margin: 2em 0;
 
@@ -341,7 +345,12 @@ body {
     }
 
     &.register {
-        height: 70vh;
+        height: 57.5vh;
+
+        @include large {
+            height: 70vh;
+        }
+
     }
     &.not-found {
         height: 40vh;
