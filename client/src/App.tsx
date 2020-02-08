@@ -18,6 +18,7 @@ import NotFound from './components/pages/NotFound/NotFound';
 import Register from './components/pages/Register/Register';
 import Login from './components/pages/Login/Login';
 import About from './components/pages/About/About';
+import Projects from './components/pages/Projects/Projects';
 
 const App: React.FC = () => {
 
@@ -38,6 +39,11 @@ const App: React.FC = () => {
           <Route exact path="/login" render={(props) => {
             if (authStore.isAuthenticated) return <Redirect to="/" />
             return <Login />
+          }} />
+
+          <Route exact path="/projects" render={(props) => {
+            if (!authStore.isAuthenticated) return <Redirect to="/" />
+            return <Projects />
           }} />
 
           <Route exact path="/about" component={About} />
