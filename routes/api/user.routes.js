@@ -40,6 +40,7 @@ router.get('/:id?', (req, res) => {
 
 });
 
+// Register Route
 router.post('/register', (req, res) => {
 
     // Validation
@@ -81,6 +82,7 @@ router.post('/register', (req, res) => {
     })
 });
 
+// Login Route
 router.post('/login', (req, res) => {
 
     // Form validation
@@ -140,10 +142,11 @@ router.post('/login', (req, res) => {
             } else {
                 return res
                     .status(400)
-                    .json({ passwordincorrect: "Password incorrect" });
+                    .json({ password: "Password incorrect" });
             }
         });
     });
 });
 
+// Export Router
 module.exports = router;
