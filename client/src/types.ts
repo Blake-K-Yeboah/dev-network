@@ -11,3 +11,15 @@ export interface Iuser {
     username: string,
     createdOn: Date
 }
+
+export interface IProject {
+    id: string,
+    title: string,
+    descirption: string,
+    img: string, // Path to image
+    likes: string[],
+    dislikes: string[],
+    preview: string,
+    postedBy: Iuser,
+    postedOn: Date
+}
