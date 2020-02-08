@@ -1,10 +1,19 @@
 import React from 'react'
 import { inject, observer } from 'mobx-react';
+import Navbar from '../../layout/Navbar';
+import Footer from '../../layout/Footer';
 
-const Projects = inject("authStore")(observer(() => {
+const Projects = inject("authStore", "projectStore")(observer(({ authStore, projectStore }) => {
+
     return (
         <>
-            <p>Hello!</p>
+            <Navbar />
+
+            <div className="container">
+
+                <Footer />
+
+            </div>
         </>
     )
 }))
