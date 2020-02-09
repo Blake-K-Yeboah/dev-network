@@ -9,6 +9,12 @@ class projectstore {
     }
 
     @observable projects: IProject[] | null = null;
+
+    @observable modalStatus: boolean = false;
+
+    @action toggleStatus = (): void => {
+        this.modalStatus = !this.modalStatus;
+    }
 }
 
 export const projectStore = new projectstore();
