@@ -1,6 +1,12 @@
 /* Import Google Fonts */
 @import url('https://fonts.googleapis.com/css?family=Raleway&display=swap');
 
+//////////////////////////////   Transition Mixins  //////////////////////////////
+
+@mixin transition {
+    transition: .2s ease-in-out;
+}
+
 //////////////////////////////   Meida Query Mixins  //////////////////////////////
 
 @mixin large {
@@ -147,6 +153,18 @@ body {
         &:hover {    
             color: #fff;
             background: $primaryColor;
+        }
+    }
+
+    &.danger {
+        color: #fff;
+        background: #f00;
+        border-color: #f00;
+
+        &:hover {
+            border: 1px solid #f00;
+            color: #f00;
+            background: transparent;
         }
     }
 }
@@ -393,10 +411,132 @@ body {
         text-decoration: none;
         font-weight:bold;
         color: $darkGrey;
-        transition:.2s ease-in-out;
+        @include transition();
 
         &:hover {
             color: $primaryColor;
+        }
+    }
+}
+
+//////////////////////////////  Sidebar Styles  //////////////////////////////
+
+.sidebar {
+    width: 60px;
+    position:absolute;
+    left:0;
+    height: 62.5vh;
+    background: #fff;
+    border-radius: 0px 20px 20px 0px;
+    box-shadow: 0px 0px 20px rgba(0,0,0,0.05);
+    transition: 1s ease-in-out;
+    margin-top: 30px;
+
+    *.hidden {
+            display:none;
+    }
+
+    .heading {
+        writing-mode: vertical-rl;
+        text-orientation: mixed;
+        color: $lighterGrey;
+        font-weight: lighter;
+        font-size: 1.2rem;
+        line-height: 60px;
+        position:relative;
+        top:50%;
+        transform: translateY(-50%);
+    }
+
+    .toggler {
+        font-size: 1.5rem;
+        positioN: absolute;
+        top: 20px;
+        left:50%;
+        transform:translateX(-50%);
+        color: $lighterGrey;
+        font-weight: lighter;
+        cursor: pointer;
+        @include transition()
+        z-index: 1;
+
+        &:hover {
+            color: $darkGrey;
+        }
+    }
+
+    .header-img {
+        width:100%;
+        height: 20vh;
+        object-fit: cover;
+        object-position: 50% 50%;
+        @include transition();
+        opacity: .9;
+        position: relative;
+        border-radius: 0 20px 0 0;
+        
+        &.hidden {
+            opacity: 0;
+            z-index: 0;
+        }
+    }   
+
+    .profile-icon {
+        width: 100px;
+        height: 100px;
+        border-radius: 50%;
+        position:relative;
+        top: -50px;
+        left:50%;
+        transform: translateX(-50%);
+        z-index: 1;
+        border: 2px solid #fff;
+        opacity: 1;
+
+        &.hidden {
+            opacity: 0;
+            z-index: 0;
+        }
+    }
+
+    .name {
+        color: $darkGrey;
+        font-weight:lighter;
+        text-align:center;
+        position:relative;
+        top: -40.25px;
+    }
+
+    .small {
+        color: $lighterGrey;
+        text-align:center;
+        font-weight: lighter;
+        position:relative;
+        top: -30px;
+    }
+
+    .btn {
+        position:relative;
+        left:50%;
+        transform:translateX(-50%);
+
+        &:last-of-type {
+            top: 30px;
+        }
+    }
+    &.open {
+        width:30vw;
+
+        .toggler {
+            left: calc(100% - 50px);
+            transform: none;
+            color: #fff;
+            background: rgba(255,255,255,0.125);
+            width:40px;
+            height: 40px;
+            text-align:center;
+            padding-top: 5px;
+            border-radius: 50%;
         }
     }
 }
