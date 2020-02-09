@@ -4,6 +4,7 @@ import Footer from '../../layout/Footer';
 import { inject, observer } from 'mobx-react';
 import { Helmet } from 'react-helmet';
 import Sidebar from './Sidebar';
+import Header from './Header';
 
 const Projects = inject("authStore", "projectStore")(observer(({ authStore, projectStore }) => {
 
@@ -18,7 +19,9 @@ const Projects = inject("authStore", "projectStore")(observer(({ authStore, proj
             <Navbar />
 
             <div className="container">
-                
+
+                <Header />
+
                 <Sidebar />
 
                 <Footer />
