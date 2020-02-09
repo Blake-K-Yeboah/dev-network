@@ -122,7 +122,8 @@ router.post('/login', (req, res) => {
                     headerImg: user.headerImg,
                     messageGroups: user.messageGroups,
                     github: user.github,
-                    portfolio: user.portfolio
+                    portfolio: user.portfolio,
+                    followers: user.followers
                 };
 
                 // Sign token
