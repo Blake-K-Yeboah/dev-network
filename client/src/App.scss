@@ -135,6 +135,10 @@ body {
         font-size: .85rem;
     }
 
+    &:focus {
+        box-shadow: 0px 0px 20px rgba(0,0,0,0.25);
+    }
+
     &.primary {
         color: #fff;
         background: $primaryColor;
@@ -164,6 +168,18 @@ body {
         &:hover {
             border: 1px solid #f00;
             color: #f00;
+            background: transparent;
+        }
+    }
+
+    &.warning {
+        color: #fff;
+        background: #eec300;
+        border-color: #eec300;
+
+        &:hover {
+            border: 1px solid #eec300;
+            color: #eec300;
             background: transparent;
         }
     }
@@ -370,6 +386,19 @@ body {
         }
 
     }
+
+    &.projects {
+        height: 70vh;
+        position:absolute;
+
+        .btn {
+            position:absolute;
+            left:50%;
+            bottom: 30px;
+            transform:translateX(-50%)
+        }
+    }
+
     &.not-found {
         height: 40vh;
 
@@ -425,12 +454,16 @@ body {
     width: 60px;
     position:absolute;
     left:0;
-    height: 62.5vh;
+    height: 70vh;
     background: #fff;
     border-radius: 0px 20px 20px 0px;
-    box-shadow: 0px 0px 20px rgba(0,0,0,0.05);
+    box-shadow: 0px 0px 20px rgba(0,0,0,0.075);
     transition: 1s ease-in-out;
-    margin-top: 30px;
+    margin-top: -50px;
+
+    @include large {
+        margin-top: -25px;
+    }
 
     *.hidden {
             display:none;
@@ -457,7 +490,7 @@ body {
         color: $lighterGrey;
         font-weight: lighter;
         cursor: pointer;
-        @include transition()
+        @include transition();
         z-index: 1;
 
         &:hover {
@@ -519,13 +552,15 @@ body {
         position:relative;
         left:50%;
         transform:translateX(-50%);
-
-        &:last-of-type {
-            top: 30px;
-        }
+        margin-bottom: 30px;
     }
+    
     &.open {
-        width:30vw;
+        width: 22.5vw;
+
+        @include large {
+            width:30vw;
+        }
 
         .toggler {
             left: calc(100% - 50px);
