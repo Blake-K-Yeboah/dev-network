@@ -4,7 +4,7 @@ import RegisterForm from './RegisterForm';
 import Footer from '../../layout/Footer';
 import { Helmet } from 'react-helmet';
 
-const Register: React.FC = () => {
+const Register = () => {
     return (
         <>
             <Helmet>
