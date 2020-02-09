@@ -65,9 +65,8 @@ const Header = inject('authStore')(
             <div className="header not-found">
                 <h1 className="title"><MdError style={{ top: '10px', marginRight: '10px', position: 'relative' }} /> 404 - Page Not Found</h1>
                 <p className="description">There is no page associated with the path '{pageRoute as string}' </p>
-                <NavLink to="/">
-                    <button className="btn primary">Redirect To Home</button>
-                </NavLink>
+                <button className="btn primary" onClick={() => history.goBack()}>Go Back</button>
+
             </div>
         )
 
