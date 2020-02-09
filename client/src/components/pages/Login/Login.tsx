@@ -4,7 +4,7 @@ import LoginForm from './LoginForm';
 import Footer from '../../layout/Footer';
 import { Helmet } from 'react-helmet';
 
-const Register: React.FC = () => {
+const Login = () => {
     return (
         <>
             <Helmet>
@@ -27,4 +27,4 @@ const Register: React.FC = () => {
     )
 }
 
-export default Register
+export default Login
