@@ -43,7 +43,7 @@ const App: React.FC = () => {
           }} />
 
           <Route exact path="/projects" render={(props) => {
-            if (!authStore.isAuthenticated) return <Redirect to="/" />
+            if (!authStore.isAuthenticated) return <Redirect to="/login?error=1" />
             return <Projects {...props} />
           }} />
 
