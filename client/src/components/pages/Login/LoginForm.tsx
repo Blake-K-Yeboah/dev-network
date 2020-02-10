@@ -9,6 +9,9 @@ import { useHistory, NavLink } from 'react-router-dom';
 
 import jwt_decode from 'jwt-decode';
 
+import LoginError from './LoginError';
+import LoginSuccess from './LoginSuccess';
+
 const RegisterForm = inject('authStore')(observer(({ authStore }) => {
 
     // User Input State
@@ -99,10 +102,18 @@ const RegisterForm = inject('authStore')(observer(({ authStore }) => {
             });
     }
 
+    let search = history.location.search;
+
+    const error: string | null = search && search.split('=')[0] === '?error' ? search.split('=')[1] : null;
+
+    const success: string | null = search && search.split('=')[0] === '?success' ? search.split('=')[1] : null;
+
     return (
         <div className="header">
             <h1 className="title">Login</h1>
             <form className="form" onSubmit={loginHandler}>
+                {success ? <LoginSuccess /> : ''}
+                {error ? <LoginError error={error} /> : ''}
                 <div className="form-group">
                     <div className="input-container">
                         <label htmlFor="email" className={`input-label ${userInput.email !== '' ? 'valid' : ''} ${authStore.error && authStore.error.email ? 'error' : ''}`}>Email</label>
