@@ -1,7 +1,7 @@
 import React from 'react'
 import { inject, observer } from 'mobx-react';
 
-const Header = inject('authStore', 'projectStore')(observer(({ authStore, projectStore }) => {
+const Header = inject('projectStore')(observer(({ projectStore }) => {
     return (
         <div className="header projects">
 
@@ -9,7 +9,7 @@ const Header = inject('authStore', 'projectStore')(observer(({ authStore, projec
 
             {/* Post List COmponent*/}
 
-            <button className="btn primary" onClick={(): void => projectStore.toggleStatus()}>Post Project</button>
+            <button className="btn primary" onClick={(): void => projectStore.toggleStatus()}>Post A Project</button>
 
         </div>
     )
