@@ -5,8 +5,9 @@ import { inject, observer } from 'mobx-react';
 import { Helmet } from 'react-helmet';
 import Sidebar from './Sidebar';
 import Header from './Header';
+import PostModal from './PostModal';
 
-const Projects = inject("authStore", "projectStore")(observer(({ authStore, projectStore }) => {
+const Projects = inject("projectStore")(observer(({ projectStore }) => {
 
     return (
         <>
@@ -27,6 +28,10 @@ const Projects = inject("authStore", "projectStore")(observer(({ authStore, proj
                 <Footer />
 
             </div>
+
+            <PostModal />
+
+            <div className={`overlay ${!projectStore.modalStatus ? 'hidden' : ''}`} onClick={() => projectStore.toggleStatus()}></div>
         </>
     )
 }))
