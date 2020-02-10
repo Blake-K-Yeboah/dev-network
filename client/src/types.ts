@@ -23,3 +23,7 @@ export interface IProject {
     postedBy: Iuser,
     postedOn: Date
 }
+
+export interface ILoginErrorProps {
+    error: string
+}
