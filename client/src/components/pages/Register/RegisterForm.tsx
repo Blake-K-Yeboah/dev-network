@@ -48,8 +48,8 @@ const RegisterForm = inject('authStore')(observer(({ authStore }) => {
         if (userInput.username !== '') userInput.username = `@${userInput.username}`;
 
         axios.post('/api/users/register', userInput).then(res => {
-            console.log("Successfully registered!");
-            history.push('/login')
+            authStore.setError(null);
+            history.push('/login?success=1')
         }).catch(err => {
             authStore.setError(null);
             let errors = Object.entries(err.response.data);
