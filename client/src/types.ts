@@ -16,10 +16,12 @@ export interface IProject {
     id: string,
     title: string,
     descirption: string,
+    tags: string[],
     img: string, // Path to image
     likes: string[],
     dislikes: string[],
     preview: string,
+    github: string,
     postedBy: Iuser,
     postedOn: Date
 }
