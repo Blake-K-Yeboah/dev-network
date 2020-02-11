@@ -15,7 +15,11 @@ const Sidebar = inject('authStore')(observer(({ authStore }) => {
 
     const logOutHandler = () => {
 
-        localStorage.removeItem("jwtToken");
+        let currentDate = new Date();
+
+        currentDate.setMonth(currentDate.getMonth() - 1);
+
+        document.cookie = `jwtToken=; expires= ${currentDate}`;
 
         delete Axios.defaults.headers.common["Authorization"];
 

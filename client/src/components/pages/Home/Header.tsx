@@ -12,7 +12,11 @@ const Header = inject('authStore')(
         // Handle Logout
         const logOutHandler = () => {
 
-            localStorage.removeItem("jwtToken");
+            let currentDate = new Date();
+
+            currentDate.setMonth(currentDate.getMonth() - 1);
+
+            document.cookie = `jwtToken=; expires= ${currentDate}`;
 
             delete Axios.defaults.headers.common["Authorization"];
 
