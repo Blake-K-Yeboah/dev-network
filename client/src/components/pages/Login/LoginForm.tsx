@@ -14,7 +14,7 @@ import LoginSuccess from './LoginSuccess';
 
 const RegisterForm = inject('authStore')(observer(({ authStore }) => {
 
-    // User Input State
+    // User Input State 
     const [userInput, setUserInput] = useState({
         email: '',
         password: ''
@@ -71,10 +71,17 @@ const RegisterForm = inject('authStore')(observer(({ authStore }) => {
         axios
             .post("/api/users/login", userInput)
             .then(res => {
-                // Set token to localStorage
+
+                // Set token to cookies
                 const { token } = res.data;
-                document.cookie = `jwtToken=${token}`;
-                
+
+                let currentDate = new Date();
+
+                currentDate.setMonth(currentDate.getMonth() + 1);
+
+                // Cookie Expires in 1 month
+                document.cookie = `jwtToken=${token}; expires=${currentDate}`;
+
                 authStore.setToken(token);
 
                 // Set token to Auth header
