@@ -677,3 +677,34 @@ div.success {
         width:100%;
     }
 }
+
+//////////////////////////////  Popup Styles  //////////////////////////////
+
+.popup {
+    width: 300px;
+    background: #fff;
+    height: 150px;
+    position:absolute;
+    top: 25vh;
+    left: 0;
+    z-index: 1;
+    box-shadow: 0px 0px 20px rgba(0,0,0,0.1);
+    transition: .75s ease-in-out;
+    
+    .popup-text {
+        font-size: 1.15rem;
+        text-align:center;
+        padding: 1em;
+    }
+    
+    .btn {
+        position:relative;
+        left:50%;
+        top: 10px;
+        transform: translateX(-50%);
+    }
+
+    &.hidden {
+        left: -300px;
+    }
+}
