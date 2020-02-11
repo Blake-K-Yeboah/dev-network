@@ -20,6 +20,7 @@ import Register from './components/pages/Register/Register';
 import Login from './components/pages/Login/Login';
 import About from './components/pages/About/About';
 import Projects from './components/pages/Projects/Projects';
+import CookiePopup from './components/popups/CookiePopup';
 
 const App: React.FC = () => {
 
@@ -27,6 +28,8 @@ const App: React.FC = () => {
     <Router>
 
       <Provider authStore={authStore} projectStore={projectStore}>
+
+        <Route path='*' component={CookiePopup} />
 
         <Switch>
 
