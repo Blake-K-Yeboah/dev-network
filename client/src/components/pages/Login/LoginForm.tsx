@@ -73,7 +73,8 @@ const RegisterForm = inject('authStore')(observer(({ authStore }) => {
             .then(res => {
                 // Set token to localStorage
                 const { token } = res.data;
-                localStorage.setItem("jwtToken", token);
+                document.cookie = `jwtToken=${token}`;
+                
                 authStore.setToken(token);
 
                 // Set token to Auth header
