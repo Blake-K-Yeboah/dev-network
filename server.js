@@ -13,6 +13,9 @@ const passport = require('passport');
 // Require User Router
 const users = require('./routes/api/user.routes');
 
+// Require Project Router
+const projects = require('./routes/api/project.routes');
+
 // Initialize Express
 const app = express();
 
@@ -41,6 +44,9 @@ require("./config/passport")(passport);
 
 // User Route
 app.use('/api/users', users);
+
+// Project Route
+app.use('/api/projects', projects);
 
 // Define Port
 const port = process.env.PORT || 5000;
