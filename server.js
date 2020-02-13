@@ -10,6 +10,9 @@ const bodyParser = require('body-parser');
 // Require passport
 const passport = require('passport');
 
+// Require Cors
+const cors = require('cors');
+
 // Require User Router
 const users = require('./routes/api/user.routes');
 
@@ -22,6 +25,9 @@ const app = express();
 // BodyParser middleware
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
+
+// Cors mmiddle ware
+app.use(cors());
 
 // DB Config
 const db = require("./config/keys").mongoURI;

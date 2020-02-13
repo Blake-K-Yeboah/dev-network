@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { inject, observer } from 'mobx-react';
+import Axios from 'axios';
 
 const PostModal = inject('authStore', 'projectStore')(observer(({ authStore, projectStore }) => {
 
@@ -13,8 +14,6 @@ const PostModal = inject('authStore', 'projectStore')(observer(({ authStore, pro
     });
 
     const [file, setFile] = useState();
-
-    const [fileName, setFileName] = useState('Pick A File');
 
     // Input Event Handlers
     const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -40,19 +39,46 @@ const PostModal = inject('authStore', 'projectStore')(observer(({ authStore, pro
 
     const fileChange = (files: FileList | null) => {
 
-        let fileName = files ? files[0].name : 'Pick A File';
-
-        setFileName(fileName);
-
         setFile(files ? files[0] : null);
 
+    }
+
+    const postProject = (e: React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
+
+        // Define formData
+        const formData = new FormData();
+
+        // Append File on to formData
+        formData.append('file', file);
+
+        let data = {
+            ...userInput,
+            postedBy: authStore.user
+        }
+
+        Object.entries(data).forEach(entry => {
+            formData.append(entry[0], entry[1]);
+        });
+
+        Axios.post('/api/projects', formData).then(res => {
+            console.log(res.data);
+            projectStore.fetchProjects();
+        }).catch(err => {
+            console.log(err);
+            projectStore.setError(null);
+            let errors = Object.entries(err);
+            errors.forEach(error => {
+                projectStore.setError({ ...projectStore.error, [error[0]]: error[1] });
+            });
+        })
     }
 
     return (
         <div className={`modal ${!projectStore.modalStatus ? 'hidden' : ''}`}>
             <span className="close-icon" onClick={() => projectStore.toggleStatus()}>&times;</span>
             <h1 className="title">Post A Project</h1>
-            <form className="modal-form" autoComplete="off">
+            <form className="modal-form" autoComplete="off" onSubmit={postProject}>
                 <div className="form-group">
                     <div className="input-container">
                         <label htmlFor="title" className={`input-label ${userInput.title !== '' ? 'valid' : ''}`}>Title</label>
@@ -67,7 +93,7 @@ const PostModal = inject('authStore', 'projectStore')(observer(({ authStore, pro
                 </div>
                 <div className="form-group">
                     <div className="input-container">
-                        <label htmlFor="tags" className={`input-label ${userInput.tags !== '' ? 'valid' : ''}`}>Tags (Comma between each one)</label>
+                        <label htmlFor="tags" className={`input-label ${userInput.tags !== '' ? 'valid' : ''}`}>Tags</label>
                         <input type="text" className="input" id="tags" value={userInput.tags} onBlur={onBlur} onFocus={onFocus} onChange={onChange} />
                     </div>
                 </div>
