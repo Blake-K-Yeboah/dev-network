@@ -70,15 +70,17 @@ router.post('/', (req, res) => {
 
     }
 
+    let tags = req.body.tags.replace(' ', '').split(',');
+
     // Define New Post Model; 
     const newProject = new Project({
         title: req.body.title,
         description: req.body.description,
         img,
-        tags: req.body.tags,
+        tags,
         github,
         preview,
-        postedBy: req.body.postedBy
+        userId: req.body.userId
     });
 
     newProject.save().then(project => res.json(project)).catch(err => res.json(err));
