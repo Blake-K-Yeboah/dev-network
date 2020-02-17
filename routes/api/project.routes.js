@@ -4,7 +4,13 @@ const router = express.Router();
 const uuidv4 = require('uuid/v4');
 
 const validateProjectInput = require('../../validation/project')
+
 const Project = require('../../models/project.model');
+
+const verifyToken = require('../../middleware/verifyToken');
+
+// Check User Token Middleware
+router.use(verifyToken);
 
 // Default Route
 router.get('/:id?', (req, res) => {
