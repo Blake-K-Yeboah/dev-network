@@ -34,8 +34,8 @@ const projectSchema = new Schema({
         type: String,
         required: false
     },
-    postedBy: {
-        type: Object,
+    userId: {
+        type: String,
         required: true
     },
     postedOn: {
