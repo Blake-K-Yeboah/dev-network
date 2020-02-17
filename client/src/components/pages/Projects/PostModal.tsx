@@ -54,7 +54,7 @@ const PostModal = inject('authStore', 'projectStore')(observer(({ authStore, pro
 
         let data = {
             ...userInput,
-            postedBy: authStore.user
+            userId: authStore.user.id
         }
 
         Object.entries(data).forEach(entry => {
@@ -62,14 +62,13 @@ const PostModal = inject('authStore', 'projectStore')(observer(({ authStore, pro
         });
 
         Axios.post('/api/projects', formData).then(res => {
-            console.log(res.data);
+            projectStore.toggleStatus();
             projectStore.fetchProjects();
         }).catch(err => {
-            console.log(err);
-            projectStore.setError(null);
-            let errors = Object.entries(err);
+            authStore.setError(null);
+            let errors = Object.entries(err.response.data);
             errors.forEach(error => {
-                projectStore.setError({ ...projectStore.error, [error[0]]: error[1] });
+                authStore.setError({ ...authStore.error, [error[0]]: error[1] });
             });
         })
     }
@@ -81,20 +80,20 @@ const PostModal = inject('authStore', 'projectStore')(observer(({ authStore, pro
             <form className="modal-form" autoComplete="off" onSubmit={postProject}>
                 <div className="form-group">
                     <div className="input-container">
-                        <label htmlFor="title" className={`input-label ${userInput.title !== '' ? 'valid' : ''}`}>Title</label>
-                        <input type="text" className="input" id="title" value={userInput.title} onBlur={onBlur} onFocus={onFocus} onChange={onChange} />
+                        <label htmlFor="title" className={`input-label ${userInput.title !== '' ? 'valid' : ''} ${authStore.error && authStore.error.title ? 'error' : ''}`}>Title</label>
+                        <input type="text" className={`input ${authStore.error && authStore.error.title ? 'error' : ''}`} id="title" value={userInput.title} onBlur={onBlur} onFocus={onFocus} onChange={onChange} />
                     </div>
                 </div>
                 <div className="form-group">
                     <div className="input-container">
-                        <label htmlFor="description" className={`input-label ${userInput.description !== '' ? 'valid' : ''}`}>Description</label>
-                        <input type="text" className="input" id="description" value={userInput.description} onBlur={onBlur} onFocus={onFocus} onChange={onChange} />
+                        <label htmlFor="description" className={`input-label ${userInput.description !== '' ? 'valid' : ''} ${authStore.error && authStore.error.description ? 'error' : ''}`}>Description</label>
+                        <input type="text" className={`input ${authStore.error && authStore.error.description ? 'error' : ''}`} id="description" value={userInput.description} onBlur={onBlur} onFocus={onFocus} onChange={onChange} />
                     </div>
                 </div>
                 <div className="form-group">
                     <div className="input-container">
-                        <label htmlFor="tags" className={`input-label ${userInput.tags !== '' ? 'valid' : ''}`}>Tags</label>
-                        <input type="text" className="input" id="tags" value={userInput.tags} onBlur={onBlur} onFocus={onFocus} onChange={onChange} />
+                        <label htmlFor="tags" className={`input-label ${userInput.tags !== '' ? 'valid' : ''} ${authStore.error && authStore.error.tags ? 'error' : ''}`}>Tags</label>
+                        <input type="text" className={`input ${authStore.error && authStore.error.tags ? 'error' : ''}`} id="tags" value={userInput.tags} onBlur={onBlur} onFocus={onFocus} onChange={onChange} />
                     </div>
                 </div>
                 <div className="form-group form-grid">
