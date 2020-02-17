@@ -10,8 +10,8 @@ const bodyParser = require('body-parser');
 // Require passport
 const passport = require('passport');
 
-// Require Cors
-const cors = require('cors');
+// Require fileUplaod
+const fileUpload = require('express-fileupload');
 
 // Require User Router
 const users = require('./routes/api/user.routes');
@@ -22,12 +22,14 @@ const projects = require('./routes/api/project.routes');
 // Initialize Express
 const app = express();
 
-// BodyParser middleware
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(bodyParser.json());
+// Bodyparser middleware
+app.use(
+    bodyParser.urlencoded({
+        extended: false
+    })
+);
 
-// Cors mmiddle ware
-app.use(cors());
+app.use(bodyParser.json());
 
 // DB Config
 const db = require("./config/keys").mongoURI;
@@ -47,6 +49,9 @@ app.use(passport.initialize());
 
 // Passport config
 require("./config/passport")(passport);
+
+// File Upload Middleware
+app.use(fileUpload());
 
 // User Route
 app.use('/api/users', users);
