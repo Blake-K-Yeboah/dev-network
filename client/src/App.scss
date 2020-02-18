@@ -790,7 +790,7 @@ div.success {
 
 .project {
     width: 40%;
-    height: 70%;
+    height: 71.25%;
     position:absolute;
     bottom: 30px;
     left:50%;
@@ -849,5 +849,80 @@ div.success {
         line-height:1.75em;
         color: lighten($lighterGrey, 15%);
         margin: 20px 0 0 0;
+    }
+
+    .icons-container {
+        width:80%;
+        height: 30px;
+        margin: 12.5px 0 0 10%;
+
+        .icon-group {
+
+            &.left {
+                float:left;
+            }
+
+            &.right {
+                float:right;
+            }
+
+            .icon {
+                color: $darkGrey;
+                font-size: 1.25rem;
+                margin: 0 7.5px;
+                transition: .3s ease-in-out;
+                cursor: pointer;
+
+                &.active {  
+                    color: $primaryColor;
+
+                    &:hover {
+                        color: $primaryColor;
+                    }
+                }
+
+                &.disabled {
+                    color: $lighterGrey;
+                }
+
+                &:hover {
+                    color: $lighterGrey;
+                }
+
+                
+                &.active {  
+                    color: $primaryColor;
+
+                    &:hover {
+                        color: $primaryColor;
+                    }
+                }
+            }
+        }
+    }
+
+    .project-footer {
+        background: #e9e9e9;
+        position:absolute;
+        height: 35px;
+        bottom: 0;
+        width:100%;
+        border-radius: 0px 0px 15px 15px;
+
+        .footer-text {
+            font-size: 0.8rem;
+            color: $darkGrey;
+            text-align:center;
+            line-height: 35px;
+
+            .profile-link {
+                color: $primaryColor;
+                text-decoration: none;
+
+                &:hover {
+                    text-decoration: underline;
+                }
+            }
+        }
     }
 }
