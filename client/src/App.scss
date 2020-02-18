@@ -118,6 +118,23 @@ body {
     }
 }
 
+//////////////////////////////  Spinner Styles and Animation  //////////////////////////////
+
+.spinner {
+    color: $darkGrey;
+    font-size: 2rem;
+    position:absolute;
+    left: calc(50% - 10px);
+    top: calc(50% - 20px);
+    transform: translate(-50%, -50%);
+    animation: spin infinite 2s;
+}
+
+@keyframes spin {
+    from {transform:rotate(0deg);}
+    to {transform:rotate(360deg);}
+}
+
 //////////////////////////////  Button Styles  //////////////////////////////
 
 .btn {
@@ -185,7 +202,63 @@ body {
         }
     }
 }
+
+.circle-btn {
+    width: 67.5px;
+    height: 67.5px;
+    border-radius:50%;
+    border: none;
+    position:absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: #f4f4f4;
+    box-shadow: 0px 0px 15px rgba(0,0,0,0.025);
+    transition: .3s ease-in-out;
+    cursor: pointer;
+
+    &.previous {
+        left: 150px;
+    }
+
+    &.next {
+        right: 150px;
+    }
+
+    .icon {
+        color: $darkGrey;
+        font-weight:bold;
+        font-family: Helvetica, sans-serif;
+    }
+
+    &:hover {
+        background: #f9f9f9;
+        box-shadow: 0px 0px 15px rgba(0,0,0,0.075);
         
+        .icon {
+            color: $primaryColor;
+        }
+        
+    }
+
+    &:focus {
+        box-shadow: 0px 0px 20px rgba(0,0,0,0.075);
+        outline: none;
+    }
+
+    @include large {
+        width: 55px;
+        height: 55px;
+
+        &.next {
+            right: 100px;
+        }
+
+        &.previous {
+            left: 100px;
+        }
+    }
+}
+
 //////////////////////////////  Form Group Styles  //////////////////////////////
 
 .form-group {
@@ -391,14 +464,18 @@ body {
     }
 
     &.projects {
-        height: 70vh;
+        height: 72.5vh;
         position:absolute;
 
         .btn {
             position:absolute;
             left:50%;
-            bottom: 30px;
-            transform:translateX(-50%)
+            bottom: 50px;
+            transform:translateX(-50%);
+
+            @include large {
+                bottom: 30px;
+            }
         }
     }
 
@@ -706,5 +783,71 @@ div.success {
 
     &.hidden {
         left: -300px;
+    }
+}
+
+//////////////////////////////  Project Styles  //////////////////////////////
+
+.project {
+    width: 40%;
+    height: 70%;
+    position:absolute;
+    bottom: 30px;
+    left:50%;
+    transform: translateX(-50%);
+    box-shadow: 0px 0px 20px rgba(0,0,0,0.15);
+    border-radius: 15px;
+    font-family: Helvetica, sans-serif;
+
+    .project-img {
+        width:100%;
+        border-radius: 15px 15px 0px 0px
+    }
+
+    .project-title {
+        font-weight:lighter;
+        font-size: 1.25rem;
+        color: $darkGrey;
+        padding: .5em 0;
+        text-align:center;
+    }
+
+    .project-desc {
+        font-weight:lighter;
+        font-size: 0.85rem;
+        line-height:1.75em;
+        color: lighten($lighterGrey, 15%);
+        text-align:center;
+        width:80%;
+        position:relative;
+        left:50%;
+        transform: translateX(-50%);
+    }
+
+    .project-tags {
+        height: 20px;
+        width: 80%;
+        margin: 15px 0 0 10%;
+        list-style: none;
+        display:flex;
+
+        .tag {
+            background: lighten($lighterGrey, 15%);
+            color: #fff;
+            margin: 0 5px;
+            font-size: .85rem;
+            min-width: 50px;
+            text-align:center;
+            line-height: 20px;
+            border-radius:5px;
+        }
+    }
+
+    .no-tags {
+        font-weight:lighter;
+        font-size: 0.85rem;
+        line-height:1.75em;
+        color: lighten($lighterGrey, 15%);
+        margin: 20px 0 0 0;
     }
 }
