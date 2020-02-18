@@ -1,8 +1,7 @@
 import React from 'react'
-import { inject, observer } from 'mobx-react';
 import ProjectCarousel from './ProjectCarousel/ProjectCarousel';
 
-const Header = inject('projectStore')(observer(({ projectStore }) => {
+const Header = () => {
     return (
         <div className="header projects">
 
@@ -10,10 +9,8 @@ const Header = inject('projectStore')(observer(({ projectStore }) => {
 
             <ProjectCarousel />
 
-            <button className="btn primary" onClick={(): void => projectStore.toggleStatus()}>Post A Project</button>
-
         </div>
     )
-}))
+}
 
 export default Header;
