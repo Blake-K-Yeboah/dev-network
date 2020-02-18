@@ -15,8 +15,6 @@ class projectstore {
 
     @observable activeProjectIndex: number = 0;
 
-    @observable activeProject: IProject | null = this.projects ? this.projects[this.activeProjectIndex] : null;
-
     @action nextProject(): void {
         projectStore.activeProjectIndex += 1;
     }
