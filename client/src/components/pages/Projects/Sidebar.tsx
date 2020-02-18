@@ -3,7 +3,7 @@ import { inject, observer } from 'mobx-react';
 import { useHistory } from 'react-router-dom';
 import Axios from 'axios';
 
-const Sidebar = inject('authStore')(observer(({ authStore }) => {
+const Sidebar = inject('authStore', 'projectStore')(observer(({ authStore, projectStore }) => {
 
     const [status, setStatus] = useState(false);
 
@@ -34,12 +34,6 @@ const Sidebar = inject('authStore')(observer(({ authStore }) => {
 
     }
 
-    const redirectToEditProfile = () => {
-
-        history.push(`/profile/${user.username.replace('@', '')}/edit`);
-
-    }
-
     return (
         <div className={`sidebar ${status ? 'open' : ''}`}>
             <span className="toggler" onClick={() => setStatus(!status)}>{status ? '<' : '>'}</span>
@@ -60,7 +54,9 @@ const Sidebar = inject('authStore')(observer(({ authStore }) => {
 
             <br />
 
-            {window.innerHeight > 1000 ? <><button className={`btn warning ${hideStatus}`} onClick={redirectToEditProfile}>Edit Profile</button> <br /></> : ''}
+            <button className={`btn outline ${hideStatus}`} onClick={(): void => projectStore.toggleStatus()}>Post A Project</button>
+
+            <br />
 
             <button className={`btn danger ${hideStatus}`} onClick={logOutHandler}>Log Out</button>
         </div>
