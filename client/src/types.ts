@@ -15,14 +15,14 @@ export interface Iuser {
 export interface IProject {
     id: string,
     title: string,
-    descirption: string,
-    tags: string,
+    description: string,
+    tags: string[],
     img: string, // Path to image
     likes: string[],
     dislikes: string[],
-    preview: string,
-    github: string,
-    postedBy: Iuser,
+    preview: string | null,
+    github: string | null,
+    userId: string,
     postedOn: Date
 }
 
