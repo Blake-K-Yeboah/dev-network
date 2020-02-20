@@ -1,5 +1,5 @@
 export interface Iuser {
-    id: string,
+    _id: string,
     profileIcon: string,
     headerImg: string,
     messageGroups: string[],
@@ -13,7 +13,7 @@ export interface Iuser {
 }
 
 export interface IProject {
-    id: string,
+    _id: string,
     title: string,
     description: string,
     tags: string[],
