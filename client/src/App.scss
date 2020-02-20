@@ -224,6 +224,11 @@ body {
         right: 150px;
     }
 
+    &.disabled {
+        opacity: 0;
+        display:none;
+    }
+
     .icon {
         color: $darkGrey;
         font-weight:bold;
@@ -830,6 +835,7 @@ div.success {
         margin: 15px 0 0 10%;
         list-style: none;
         display:flex;
+        bottom: 80px;
 
         .tag {
             background: lighten($lighterGrey, 15%);
@@ -851,10 +857,15 @@ div.success {
         margin: 20px 0 0 0;
     }
 
+    .project-tags, .icons-container {
+        position:absolute;
+    }
+
     .icons-container {
         width:80%;
         height: 30px;
         margin: 12.5px 0 0 10%;
+        bottom: 40px;
 
         .icon-group {
 
@@ -883,6 +894,7 @@ div.success {
 
                 &.disabled {
                     color: $lighterGrey;
+                    cursor: default;
                 }
 
                 &:hover {
