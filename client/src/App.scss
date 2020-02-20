@@ -794,7 +794,7 @@ div.success {
 //////////////////////////////  Project Styles  //////////////////////////////
 
 .project {
-    width: 40%;
+    width: 37.5%;
     height: 71.25%;
     position:absolute;
     bottom: 30px;
@@ -804,6 +804,10 @@ div.success {
     border-radius: 15px;
     font-family: Helvetica, sans-serif;
 
+    @include large {
+        width: 40%;
+    }
+
     .project-img {
         width:100%;
         border-radius: 15px 15px 0px 0px
@@ -811,31 +815,40 @@ div.success {
 
     .project-title {
         font-weight:lighter;
-        font-size: 1.25rem;
+        font-size: 1.75rem;
         color: $darkGrey;
-        padding: .5em 0;
+        padding: .75em 0;
         text-align:center;
+
+        @include large {
+            font-size: 1.25rem;
+            padding: .5em 0;
+        }
     }
 
     .project-desc {
         font-weight:lighter;
-        font-size: 0.85rem;
+        font-size: 1.25rem;
         line-height:1.75em;
         color: lighten($lighterGrey, 15%);
         text-align:center;
-        width:80%;
+        width: 80%;
         position:relative;
         left:50%;
         transform: translateX(-50%);
+
+        @include large {
+            font-size: 0.85rem;
+        }
     }
 
     .project-tags {
-        height: 20px;
         width: 80%;
         margin: 15px 0 0 10%;
         list-style: none;
         display:flex;
-        bottom: 80px;
+        bottom: 120px;
+        overflow: hidden;
 
         .tag {
             background: lighten($lighterGrey, 15%);
@@ -844,8 +857,18 @@ div.success {
             font-size: .85rem;
             min-width: 50px;
             text-align:center;
-            line-height: 20px;
+            line-height: 25px;
             border-radius:5px;
+            height: 25px;
+        }
+
+        @include large {
+            bottom: 80px;
+
+            .tag {
+                height:20px;
+                line-height: 20px;
+            }
         }
     }
 
@@ -865,8 +888,11 @@ div.success {
         width:80%;
         height: 30px;
         margin: 12.5px 0 0 10%;
-        bottom: 40px;
+        bottom: 70px;
 
+        @include large {
+            bottom: 40px;
+        }
         .icon-group {
 
             &.left {
@@ -879,10 +905,14 @@ div.success {
 
             .icon {
                 color: $darkGrey;
-                font-size: 1.25rem;
+                font-size: 1.75rem;
                 margin: 0 7.5px;
                 transition: .3s ease-in-out;
                 cursor: pointer;
+
+                @include large {
+                    font-size: 1.25rem;
+                }
 
                 &.active {  
                     color: $primaryColor;
@@ -916,16 +946,16 @@ div.success {
     .project-footer {
         background: #e9e9e9;
         position:absolute;
-        height: 35px;
+        height: 42.5px;
         bottom: 0;
         width:100%;
         border-radius: 0px 0px 15px 15px;
 
         .footer-text {
-            font-size: 0.8rem;
+            font-size: 1rem;
             color: $darkGrey;
             text-align:center;
-            line-height: 35px;
+            line-height: 42.5px;
 
             .profile-link {
                 color: $primaryColor;
@@ -934,6 +964,15 @@ div.success {
                 &:hover {
                     text-decoration: underline;
                 }
+            }
+        }
+
+        @include large {
+            height: 35px;   
+            line-height: 35px;
+
+            .footer-text {
+                font-size: .8rem;
             }
         }
     }
