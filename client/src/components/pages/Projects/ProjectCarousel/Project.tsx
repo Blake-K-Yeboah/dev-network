@@ -4,10 +4,22 @@ import Spinner from '../../../Spinner';
 import { IProject } from '../../../../types';
 import { IoIosCode, IoMdEye, IoMdThumbsDown, IoMdThumbsUp } from 'react-icons/io';
 import { NavLink } from 'react-router-dom';
+import Axios from 'axios';
 
 const Project = inject('projectStore', 'authStore')(observer(({ projectStore, authStore }) => {
 
     const project: IProject | null = projectStore.projects ? projectStore.projects[projectStore.activeProjectIndex] : null;
+
+    const likeCheck = project ? project.likes.includes(authStore.user.id) : false;
+
+    const likeHandler = (): void => {
+        console.log("Posting!")
+        Axios.post(`/api/projects/${project ? project._id : null}/${likeCheck ? 'unlike' : 'like'}`, { uid: authStore.user.id })
+            .then(res => {
+                // Update Project
+                projectStore.fetchProjects();
+            }).catch(err => console.error(err));
+    }
 
     return (
         <>
@@ -17,7 +29,7 @@ const Project = inject('projectStore', 'authStore')(observer(({ projectStore, au
                 <p className="project-desc">{project.description}</p>
                 <ul className="project-tags">
                     {project.tags ? project.tags.map((tag: string) => {
-                        return <li className="tag">{tag}</li>
+                        return <li className="tag" key={tag} >{tag}</li>
                     }) : <p className="no-tags">No Tags</p>}
                 </ul>
                 <div className="icons-container">
@@ -26,7 +38,7 @@ const Project = inject('projectStore', 'authStore')(observer(({ projectStore, au
                         {project.preview ? <a href={project.preview} title="Preview"><IoMdEye className="icon" /></a> : <IoMdEye className="icon disabled" />}
                     </div>
                     <div className="icon-group right">
-                        <IoMdThumbsUp className={`icon ${project.likes.includes(authStore.user.id) ? 'active' : ''}`} />
+                        <IoMdThumbsUp className={`icon ${likeCheck ? 'active' : ''}`} onClick={likeHandler} />
                         <IoMdThumbsDown className={`icon ${project.dislikes.includes(authStore.user.id) ? 'active' : ''}`} />
                     </div>
                 </div>
