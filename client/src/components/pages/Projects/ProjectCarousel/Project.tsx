@@ -12,9 +12,18 @@ const Project = inject('projectStore', 'authStore')(observer(({ projectStore, au
 
     const likeCheck = project ? project.likes.includes(authStore.user.id) : false;
 
+    const dislikeCheck = project ? project.dislikes.includes(authStore.user.id) : false;
+
     const likeHandler = (): void => {
-        console.log("Posting!")
         Axios.post(`/api/projects/${project ? project._id : null}/${likeCheck ? 'unlike' : 'like'}`, { uid: authStore.user.id })
+            .then(res => {
+                // Update Project
+                projectStore.fetchProjects();
+            }).catch(err => console.error(err));
+    }
+
+    const dislikeHandler = (): void => {
+        Axios.post(`/api/projects/${project ? project._id : null}/${dislikeCheck ? 'undislike' : 'dislike'}`, { uid: authStore.user.id })
             .then(res => {
                 // Update Project
                 projectStore.fetchProjects();
@@ -39,7 +48,7 @@ const Project = inject('projectStore', 'authStore')(observer(({ projectStore, au
                     </div>
                     <div className="icon-group right">
                         <IoMdThumbsUp className={`icon ${likeCheck ? 'active' : ''}`} onClick={likeHandler} />
-                        <IoMdThumbsDown className={`icon ${project.dislikes.includes(authStore.user.id) ? 'active' : ''}`} />
+                        <IoMdThumbsDown className={`icon ${dislikeCheck ? 'dislike-active' : ''}`} onClick={dislikeHandler} />
                     </div>
                 </div>
                 <div className="project-footer">
