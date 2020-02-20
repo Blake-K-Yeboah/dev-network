@@ -93,4 +93,40 @@ router.post('/', (req, res) => {
 
 });
 
+// Like/Dislike Route
+router.post('/:id/:action', (req, res) => {
+    const id = req.params.id;
+    const userId = req.body.uid;
+    const action = req.params.action;
+
+    switch (action) {
+        case 'like':
+            Project.findByIdAndUpdate(id, { $push: { likes: userId } }, (err, doc) => {
+                if (err) return res.send(500, err);
+                res.json(doc);
+            });
+            break;
+        case 'unlike':
+            Project.findByIdAndUpdate(id, { $pull: { likes: userId } }, (err, doc) => {
+                if (err) return res.send(500, err);
+                res.json(doc);
+            });
+            break;
+        case 'dislike':
+            Project.findByIdAndUpdate(id, { $push: { dislikes: userId } }, (err, doc) => {
+                if (err) return res.send(500, err);
+                res.json(doc);
+            });
+            break;
+        case 'undislike':
+            Project.findByIdAndUpdate(id, { $pull: { dislikes: userId } }, (err, doc) => {
+                if (err) return res.send(500, err);
+                res.json(doc);
+            });
+            break;
+        default:
+            // No Default
+            break;
+    }
+})
 module.exports = router;
