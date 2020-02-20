@@ -921,7 +921,14 @@ div.success {
                         color: $primaryColor;
                     }
                 }
+                
+                &.dislike-active {
+                    color: #FF0000;
 
+                    &:hover {
+                        color: #FF0000;
+                    }
+                }
                 &.disabled {
                     color: $lighterGrey;
                     cursor: default;
