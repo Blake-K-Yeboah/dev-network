@@ -1,12 +1,12 @@
 import React from 'react'
 import { inject, observer } from 'mobx-react'
 import Spinner from '../../../Spinner';
-import { IProject } from '../../../../types';
+import { IProject, Iuser } from '../../../../types';
 import { IoIosCode, IoMdEye, IoMdThumbsDown, IoMdThumbsUp } from 'react-icons/io';
 import { NavLink } from 'react-router-dom';
 import Axios from 'axios';
 
-const Project = inject('projectStore', 'authStore')(observer(({ projectStore, authStore }) => {
+const Project = inject('projectStore', 'authStore', 'usersStore')(observer(({ projectStore, authStore, usersStore }) => {
 
     const project: IProject | null = projectStore.projects ? projectStore.projects[projectStore.activeProjectIndex] : null;
 
@@ -30,6 +30,8 @@ const Project = inject('projectStore', 'authStore')(observer(({ projectStore, au
             }).catch(err => console.error(err));
     }
 
+    const postedBy = project && usersStore.users ? usersStore.users.filter((user: Iuser) => user._id === project.userId)[0] : null;
+
     return (
         <>
             {project ? <div className="project">
@@ -52,7 +54,7 @@ const Project = inject('projectStore', 'authStore')(observer(({ projectStore, au
                     </div>
                 </div>
                 <div className="project-footer">
-                    <p className="footer-text">Posted By <NavLink to={`/profile/`} className="profile-link">{/* Add Name */}Blake Yeboah</NavLink></p>
+                    <p className="footer-text">Posted By <NavLink to={`/profile/${postedBy ? postedBy.username.replace('@', '') : 'Loading'}`} className="profile-link">{postedBy ? postedBy.username : 'Loading'}</NavLink></p>
                 </div>
             </div> : <Spinner />}
         </>
