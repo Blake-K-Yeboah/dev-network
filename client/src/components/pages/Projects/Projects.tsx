@@ -7,10 +7,11 @@ import Sidebar from './Sidebar';
 import Header from './Header';
 import PostModal from './PostModal';
 
-const Projects = inject("projectStore")(observer(({ projectStore }) => {
+const Projects = inject("projectStore", "usersStore")(observer(({ projectStore, usersStore }) => {
 
     useEffect(() => {
         projectStore.fetchProjects();
+        usersStore.fetchUsers();
     }, [projectStore]);
 
     return (
