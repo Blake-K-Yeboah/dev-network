@@ -3,6 +3,7 @@ import Navbar from '../../layout/Navbar'
 import Header from '../Home/Header'
 import Footer from '../../layout/Footer'
 import { Helmet } from 'react-helmet'
+import Container from '../../layout/Container'
 
 const Home = () => {
     return (
@@ -15,10 +16,15 @@ const Home = () => {
             </Helmet>
 
             <Navbar />
-            <div className="container">
+
+            <Container>
+
                 <Header page="notfound" />
+
                 <Footer />
-            </div>
+
+            </Container>
+
         </>
     )
 }

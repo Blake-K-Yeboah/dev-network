@@ -3,6 +3,7 @@ import Navbar from '../../layout/Navbar'
 import Header from './Header'
 import Footer from '../../layout/Footer'
 import { Helmet } from 'react-helmet';
+import Container from '../../layout/Container';
 
 const Home = () => {
     return (
@@ -16,13 +17,13 @@ const Home = () => {
 
             <Navbar />
 
-            <div className="container">
+            <Container>
 
                 <Header />
 
                 <Footer />
 
-            </div>
+            </Container>
 
         </>
     )

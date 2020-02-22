@@ -3,6 +3,7 @@ import Navbar from '../../layout/Navbar'
 import RegisterForm from './RegisterForm';
 import Footer from '../../layout/Footer';
 import { Helmet } from 'react-helmet';
+import Container from '../../layout/Container';
 
 const Register = () => {
     return (
@@ -15,13 +16,13 @@ const Register = () => {
 
             <Navbar />
 
-            <div className='container'>
+            <Container>
 
                 <RegisterForm />
 
                 <Footer />
 
-            </div>
+            </Container>
 
         </>
     )

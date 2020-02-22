@@ -7,6 +7,7 @@ import Sidebar from './Sidebar';
 import Header from './Header';
 import PostModal from './PostModal';
 import UsersPopup from '../../popups/UsersPopup';
+import Container from '../../layout/Container';
 
 const Projects = inject("projectStore", "usersStore")(observer(({ projectStore, usersStore }) => {
 
@@ -27,7 +28,7 @@ const Projects = inject("projectStore", "usersStore")(observer(({ projectStore, 
 
             <Navbar />
 
-            <div className="container">
+            <Container>
 
                 <Header />
 
@@ -35,7 +36,7 @@ const Projects = inject("projectStore", "usersStore")(observer(({ projectStore, 
 
                 <Footer />
 
-            </div>
+            </Container>
 
             <PostModal />
 

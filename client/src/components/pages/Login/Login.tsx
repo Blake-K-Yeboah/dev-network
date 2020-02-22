@@ -3,6 +3,7 @@ import Navbar from '../../layout/Navbar'
 import LoginForm from './LoginForm';
 import Footer from '../../layout/Footer';
 import { Helmet } from 'react-helmet';
+import Container from '../../layout/Container';
 
 const Login = () => {
 
@@ -16,13 +17,13 @@ const Login = () => {
 
             <Navbar />
 
-            <div className='container'>
+            <Container>
 
                 <LoginForm />
 
                 <Footer />
 
-            </div>
+            </Container>
 
         </>
     )

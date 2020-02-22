@@ -3,6 +3,7 @@ import Navbar from '../../layout/Navbar'
 import Footer from '../../layout/Footer'
 import AboutContent from './AboutContent';
 import { Helmet } from 'react-helmet';
+import Container from '../../layout/Container';
 
 const About = () => {
     return (
@@ -16,13 +17,13 @@ const About = () => {
 
             <Navbar />
 
-            <div className="container">
+            <Container>
 
                 <AboutContent />
 
                 <Footer />
 
-            </div>
+            </Container>
 
         </>
     )
