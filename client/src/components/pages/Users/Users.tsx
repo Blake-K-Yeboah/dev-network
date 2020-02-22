@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { inject, observer } from 'mobx-react'
 import Footer from '../../layout/Footer'
 import Navbar from '../../layout/Navbar';
@@ -8,6 +8,11 @@ import Sidebar from '../Projects/Sidebar';
 import PostModal from '../Projects/PostModal';
 
 const Users = inject("usersStore", "projectStore")(observer(({ usersStore, projectStore }) => {
+
+    useEffect(() => {
+        usersStore.fetchUsers();
+    }, [usersStore]);
+
     return (
         <>
             <Navbar />
