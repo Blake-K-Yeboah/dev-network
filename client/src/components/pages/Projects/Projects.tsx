@@ -6,13 +6,14 @@ import { Helmet } from 'react-helmet';
 import Sidebar from './Sidebar';
 import Header from './Header';
 import PostModal from './PostModal';
+import UsersPopup from '../../popups/UsersPopup';
 
 const Projects = inject("projectStore", "usersStore")(observer(({ projectStore, usersStore }) => {
 
     useEffect(() => {
         projectStore.fetchProjects();
         usersStore.fetchUsers();
-    }, [projectStore]);
+    }, [projectStore, usersStore]);
 
     return (
         <>
@@ -21,6 +22,8 @@ const Projects = inject("projectStore", "usersStore")(observer(({ projectStore, 
                 <title>DevNetwork - Projects</title>
 
             </Helmet>
+
+            <UsersPopup />
 
             <Navbar />
 
@@ -37,6 +40,7 @@ const Projects = inject("projectStore", "usersStore")(observer(({ projectStore, 
             <PostModal />
 
             <div className={`overlay ${!projectStore.modalStatus ? 'hidden' : ''}`} onClick={() => projectStore.toggleStatus()}></div>
+
         </>
     )
 }))
