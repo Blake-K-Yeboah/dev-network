@@ -22,6 +22,7 @@ import Login from './components/pages/Login/Login';
 import About from './components/pages/About/About';
 import Projects from './components/pages/Projects/Projects';
 import CookiePopup from './components/popups/CookiePopup';
+import Users from './components/pages/Users/Users';
 
 const App: React.FC = () => {
 
@@ -49,6 +50,11 @@ const App: React.FC = () => {
           <Route exact path="/projects" render={(props) => {
             if (!authStore.isAuthenticated) return <Redirect to="/login?error=1" />
             return <Projects {...props} />
+          }} />
+
+          <Route exact path="/users" render={(props) => {
+            if (!authStore.isAuthenticated) return <Redirect to="/login?error=1" />
+            return <Users {...props} />
           }} />
 
           <Route exact path="/about" component={About} />
