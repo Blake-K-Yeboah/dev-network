@@ -13,6 +13,10 @@ module.exports = function validateProjectinput(data) {
         errors.description = "Description field is required";
     }
 
+    if (data.description && data.description.length > 55) {
+        errors.description = "Description Must be less than 55 characters"
+    }
+
     if (!data.tags) {
         errors.tags = "Tags field is required";
     }
