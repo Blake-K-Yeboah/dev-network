@@ -149,5 +149,31 @@ router.post('/login', (req, res) => {
     });
 });
 
+
+// Follow Route 
+router.post('/:id/follow', (req, res) => {
+    const id = req.params.id;
+    const uid = req.body.userId;
+
+    User.findByIdAndUpdate(id, { $push: { followers: uid } }, (err, doc) => {
+        if (err) return res.send(500, err);
+        res.json(doc);
+    });
+
+});
+
+// Unfollow Route
+router.post('/:id/unfollow', (req, res) => {
+    const id = req.params.id;
+    const uid = req.body.userId;
+
+    User.findByIdAndUpdate(id, { $pull: { followers: uid } }, (err, doc) => {
+        if (err) return res.send(500, err);
+        res.json(doc);
+    });
+
+});
+
+
 // Export Router
 module.exports = router;
