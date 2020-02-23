@@ -157,6 +157,7 @@ body {
 
     &:focus {
         box-shadow: 0px 0px 20px rgba(0,0,0,0.25);
+        outline: none;
     }
 
     &.primary {
@@ -201,6 +202,17 @@ body {
             border: 1px solid #eec300;
             color: #eec300;
             background: transparent;
+        }
+    }
+
+    &.following {
+        color: $darkGrey;
+        border: 1px solid #e1e1e1;
+        background: #f1f1f1;
+        box-shadow: 0px 0px 10px rgba(0,0,0,0.05);
+
+        &:hover {
+            background: #e1e1e1;
         }
     }
 }
@@ -1055,6 +1067,8 @@ div.success {
 
     @include large {
         width:40%;
+        height: 72.5%;
+        bottom: 20px;
     }
 
     .user-header {
@@ -1073,6 +1087,10 @@ div.success {
         top: -50px;
         border-radius: 50%;
         border: 1px solid #fff;
+
+        @include large {
+            width: 30%;
+        }
     }
     
     .name {
@@ -1081,6 +1099,11 @@ div.success {
         margin-top: -25px;
         font-weight:lighter;
         font-size: 1.75rem;
+
+        @include large {
+            margin-top: -30px;
+            font-size: 1.375rem;
+        }
     }
 
     .small {
@@ -1088,6 +1111,12 @@ div.success {
         margin: .75em 0 1em 0;
         color: lighten($lighterGrey, 10%);
         font-size: 1.15rem;
+
+        @include large {
+            &:first-of-type {
+                display:none;
+            }
+        }
     }
 
     .btn {
