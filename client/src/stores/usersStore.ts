@@ -20,6 +20,11 @@ class usersstore {
         usersStore.activeUserIndex -= 1;
     }
 
+    @observable searchModalStatus: boolean = false;
+
+    @action toggleSearchModalStatus(): void {
+        this.searchModalStatus = !this.searchModalStatus;
+    }
 }
 
 export const usersStore = new usersstore();
