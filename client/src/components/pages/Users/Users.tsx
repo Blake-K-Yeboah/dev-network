@@ -5,9 +5,9 @@ import Navbar from '../../layout/Navbar';
 import Container from '../../layout/Container';
 import Header from './Header';
 import Sidebar from '../Projects/Sidebar';
-import PostModal from '../Projects/PostModal';
+import SearchModal from './SearchModal';
 
-const Users = inject("usersStore", "projectStore")(observer(({ usersStore, projectStore }) => {
+const Users = inject("usersStore")(observer(({ usersStore }) => {
 
     useEffect(() => {
         usersStore.fetchUsers();
@@ -27,9 +27,9 @@ const Users = inject("usersStore", "projectStore")(observer(({ usersStore, proje
 
             </Container>
 
-            <PostModal />
+            <SearchModal />
 
-            <div className={`overlay ${!projectStore.modalStatus ? 'hidden' : ''}`} onClick={() => projectStore.toggleStatus()}></div>
+            <div className={`overlay ${!usersStore.searchModalStatus ? 'hidden' : ''}`} onClick={() => usersStore.toggleSearchModalStatus()}></div>
 
         </>
     )
