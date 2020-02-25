@@ -3,7 +3,7 @@ import { inject, observer } from 'mobx-react';
 import { useHistory } from 'react-router-dom';
 import Axios from 'axios';
 
-const Sidebar = inject('authStore', 'projectStore')(observer(({ authStore, projectStore }) => {
+const Sidebar = inject('authStore', 'projectStore', 'usersStore')(observer(({ authStore, projectStore, usersStore }) => {
 
     const [status, setStatus] = useState(false);
 
@@ -34,6 +34,8 @@ const Sidebar = inject('authStore', 'projectStore')(observer(({ authStore, proje
 
     }
 
+    const route = window.location.pathname;
+
     return (
         <div className={`sidebar ${status ? 'open' : ''}`}>
             <span className="toggler" onClick={() => setStatus(!status)}>{status ? '<' : '>'}</span>
@@ -54,7 +56,9 @@ const Sidebar = inject('authStore', 'projectStore')(observer(({ authStore, proje
 
             <br />
 
-            <button className={`btn outline ${hideStatus}`} onClick={(): void => projectStore.toggleStatus()}>Post A Project</button>
+            <button className={`btn outline ${hideStatus} ${route !== '/projects' ? 'hidden' : ''}`} onClick={(): void => projectStore.toggleStatus()}>Post A Project</button>
+
+            <button className={`btn outline ${hideStatus} ${route !== '/users' ? 'hidden' : ''}`} onClick={(): void => usersStore.toggleSearchModalStatus()}>Search Users</button>
 
             <br />
 
