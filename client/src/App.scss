@@ -762,6 +762,36 @@ div.success {
     .submit-btn {
         width:100%;
     }
+
+    .search-input  {
+        width:90%;
+        margin-left: 5%;
+        border: 0;
+        border-bottom: 1px solid $darkGrey;
+        color: $darkGrey;
+        height: 40px;  
+        font-size: 1.125rem;
+
+        &:focus {
+            border-bottom-color: $primaryColor;
+            outline: none;
+            color: $primaryColor;
+
+            &::placeholder {
+                color: $primaryColor;
+                opacity:1;
+            }
+        }
+    }
+
+    .results {
+        .title {
+            font-weight: lighter;
+            font-size: 1.75rem;
+            color: $darkGrey;
+            padding: 1em 0 .5em 1em;
+        }
+    }
 }
 
 //////////////////////////////  Popup Styles  //////////////////////////////
@@ -1099,7 +1129,12 @@ div.success {
         margin-top: -25px;
         font-weight:lighter;
         font-size: 1.75rem;
+        text-decoration: none;
 
+        &:hover {
+            text-decoration: underline;
+        }
+        
         @include large {
             margin-top: -30px;
             font-size: 1.375rem;
