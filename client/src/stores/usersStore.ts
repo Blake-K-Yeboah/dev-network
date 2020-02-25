@@ -25,6 +25,13 @@ class usersstore {
     @action toggleSearchModalStatus(): void {
         this.searchModalStatus = !this.searchModalStatus;
     }
+
+    @observable searchQuery: string = '';
+
+    @action setSearchQuery = (newQuery: string): void => {
+        this.searchQuery = newQuery;
+    }
+
 }
 
 export const usersStore = new usersstore();
