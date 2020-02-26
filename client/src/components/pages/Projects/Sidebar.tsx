@@ -42,9 +42,9 @@ const Sidebar = inject('authStore', 'projectStore', 'usersStore')(observer(({ au
 
             <p className={`heading ${status ? 'hidden' : ''}`}>Your Profile</p>
 
-            <img className={`header-img ${hideStatus}`} src={`./uploads/header/${user.headerImg}`} alt={user.firstname} />
+            <img className={`header-img ${hideStatus}`} src={`/uploads/header/${user.headerImg}`} alt={user.firstname} />
 
-            <img className={`profile-icon ${hideStatus}`} src={`./uploads/profile/${user.profileIcon}`} alt={user.firstname} />
+            <img className={`profile-icon ${hideStatus}`} src={`/uploads/profile/${user.profileIcon}`} alt={user.firstname} />
 
             <h2 className={`name ${hideStatus}`}>
                 {user.firstname as string} {user.lastname as string}
