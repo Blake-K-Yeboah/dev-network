@@ -58,7 +58,7 @@ const App: React.FC = () => {
             return <Users {...props} />
           }} />
 
-          <Route exact path="/profile/:id" render={(props) => {
+          <Route exact path="/profile/:username" render={(props) => {
             if (!authStore.isAuthenticated) return <Redirect to="/login?error=1" />
             return <Profile {...props} />
           }} />
