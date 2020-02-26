@@ -1183,8 +1183,8 @@ div.success {
         }
         
         @include large {
-            top: 45%;
-            font-size: 1.375rem;
+            top: 55%;
+            font-size: 1.25rem;
         }
     }
 
@@ -1198,6 +1198,11 @@ div.success {
 
         &:last-of-type {
             top: 70%;   
+        }
+
+        @include large {
+            font-size: .95rem;
+            top: 62.5%;
         }
     }
 
