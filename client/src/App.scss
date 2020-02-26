@@ -496,6 +496,55 @@ body {
             object-fit: cover;
             object-position: 50% 50%;
             border-radius: 20px 20px 0px 0px;
+            position:absolute;
+            top: 0;
+            left: 0;
+        }
+
+        .profile-pic {
+            width: 150px;
+            border-radius:50%;
+            border: 1px solid #fff;
+            position: absolute;
+            top: 110px;
+            left: 50px;
+        }
+
+        .profile-info {
+            position:absolute;
+            top: 160px;
+            left: 200px;
+            width: calc(100% - 200px);
+            height: 90px;
+
+            .profile-name {
+                color: $darkGrey;
+                font-weight:lighter;
+                padding: .75em 0 10px 1em;
+                font-size: 1.65rem;
+            }
+
+            .profile-username {
+                color: lighten($lighterGrey, 5%);
+                font-weight:lighter;
+                font-size: 1rem;
+                margin-left: 1.5em;
+            }
+
+            .btn-group {
+                position:absolute;
+                top: 10%;
+                right: -125px;
+                transform: translateY(-50%);
+
+                .btn:first-of-type {
+                    margin-right: 12px;
+                }
+
+                .btn  {
+                    width: 100px;
+                }
+            }
         }
     }
 
@@ -1207,6 +1256,7 @@ div.success {
         transform:translate(-50%, -50%);
         color: lighten($lighterGrey, 10%);
         font-size: 1.15rem;
+        font-weight:lighter;
 
         &:last-of-type {
             top: 70%;   
