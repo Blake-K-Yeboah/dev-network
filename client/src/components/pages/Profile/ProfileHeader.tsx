@@ -2,12 +2,29 @@ import React from 'react'
 import { inject, observer } from 'mobx-react';
 import Spinner from '../../Spinner';
 import ProfileSlider from './ProfileSlider/ProfileSlider';
+import Axios from 'axios';
 
-const ProfileHeader = inject("authStore")(observer(({ authStore, profile }) => {
+const ProfileHeader = inject("authStore", "usersStore")(observer(({ authStore, profile, usersStore }) => {
 
     const userCheck = profile && profile._id === authStore.user.id ? true : false;
 
     const followCheck = profile ? profile.followers.includes(authStore.user.id) : false;
+
+    const followHandler = (): void => {
+        if (followCheck) {
+            Axios.post(`/api/users/${profile ? profile._id : ''}/unfollow`, { userId: authStore.user.id })
+                .then(res => {
+                    usersStore.fetchUsers();
+                })
+                .catch(err => console.error(err));
+        } else {
+            Axios.post(`/api/users/${profile ? profile._id : ''}/follow`, { userId: authStore.user.id })
+                .then(res => {
+                    usersStore.fetchUsers();
+                })
+                .catch(err => console.error(err));
+        }
+    }
 
     return (
         <>
@@ -26,7 +43,7 @@ const ProfileHeader = inject("authStore")(observer(({ authStore, profile }) => {
                         <h6 className="profile-username">{profile.username}</h6>
 
                         <div className="btn-group">
-                            {userCheck ? '' : <button className={`btn ${followCheck ? 'following' : 'primary'}`}>{followCheck ? `Following ${profile.followers.length}` : `Follow ${profile.followers.length}`}</button>}
+                            {userCheck ? '' : <button className={`btn ${followCheck ? 'following' : 'primary'}`} onClick={followHandler}>{followCheck ? `Following ${profile.followers.length}` : `Follow ${profile.followers.length}`}</button>}
 
                             {!userCheck && followCheck ? <button className="btn primary">Message</button> : ''}
 
@@ -36,7 +53,7 @@ const ProfileHeader = inject("authStore")(observer(({ authStore, profile }) => {
 
                     </div>
 
-                    <ProfileSlider />
+                    <ProfileSlider profile={profile} />
 
                 </div>}
         </>
