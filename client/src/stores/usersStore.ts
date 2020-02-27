@@ -32,6 +32,11 @@ class usersstore {
         this.searchQuery = newQuery;
     }
 
+    @observable activeTab: string = 'project';
+
+    @action setActiveTab = (newTab: string): void => {
+        this.activeTab = newTab;
+    }
 }
 
 export const usersStore = new usersstore();
