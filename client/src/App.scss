@@ -492,7 +492,7 @@ body {
 
         .profile-header {
             width:100%;
-            height: 160px;
+            height: 200px;
             object-fit: cover;
             object-position: 50% 50%;
             border-radius: 20px 20px 0px 0px;
@@ -506,13 +506,13 @@ body {
             border-radius:50%;
             border: 1px solid #fff;
             position: absolute;
-            top: 110px;
+            top: 150px;
             left: 50px;
         }
 
         .profile-info {
             position:absolute;
-            top: 160px;
+            top: 200px;
             left: 200px;
             width: calc(100% - 200px);
             height: 90px;
@@ -559,7 +559,7 @@ body {
             left: 150px;
             width: calc(100% - 300px);
             height: calc(100% - 300px);
-            top: 310px;
+            top: 350px;
 
             .headings { 
                 display:flex;
