@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react'
 import { inject, observer } from 'mobx-react';
+import { Helmet } from 'react-helmet';
 import Navbar from '../../layout/Navbar';
 import Sidebar from '../Projects/Sidebar';
 import Container from '../../layout/Container';
@@ -21,6 +22,12 @@ const Profile = inject("usersStore", "projectStore")(observer(({ usersStore, pro
 
     return (
         <>
+
+            <Helmet>
+
+                <title>DevNetwork - {activeUser ? `${activeUser.firstname} ${activeUser.lastname}` : 'Loading'}</title>
+
+            </Helmet>
 
             <Navbar />
 

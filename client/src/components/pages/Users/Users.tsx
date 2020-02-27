@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react'
 import { inject, observer } from 'mobx-react'
+import { Helmet } from 'react-helmet';
 import Footer from '../../layout/Footer'
 import Navbar from '../../layout/Navbar';
 import Container from '../../layout/Container';
@@ -15,6 +16,12 @@ const Users = inject("usersStore")(observer(({ usersStore }) => {
 
     return (
         <>
+            <Helmet>
+
+                <title>DevNetwork - Users</title>
+
+            </Helmet>
+
             <Navbar />
 
             <Container>
