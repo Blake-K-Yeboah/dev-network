@@ -1,6 +1,7 @@
 import React from 'react'
 import { inject, observer } from 'mobx-react';
 import Spinner from '../../Spinner';
+import ProfileSlider from './ProfileSlider/ProfileSlider';
 
 const ProfileHeader = inject("authStore")(observer(({ authStore, profile }) => {
 
@@ -30,8 +31,12 @@ const ProfileHeader = inject("authStore")(observer(({ authStore, profile }) => {
                             {!userCheck && followCheck ? <button className="btn primary">Message</button> : ''}
 
                             {userCheck ? <button className="btn warning">Edit Profile</button> : ''}
+
                         </div>
+
                     </div>
+
+                    <ProfileSlider />
 
                 </div>}
         </>
