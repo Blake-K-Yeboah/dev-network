@@ -533,16 +533,82 @@ body {
 
             .btn-group {
                 position:absolute;
-                top: 10%;
+                top: -15%;
                 right: -125px;
                 transform: translateY(-50%);
+
+                @include large {
+                    top: 10%;
+                }
 
                 .btn:first-of-type {
                     margin-right: 12px;
                 }
 
                 .btn  {
-                    width: 100px;
+                    width: 125px;
+                    @include large {
+                        width: 100px;
+                    }
+                }
+            }
+        }
+
+        .profile-slider {
+            position:absolute;
+            left: 150px;
+            width: calc(100% - 300px);
+            height: calc(100% - 300px);
+            top: 310px;
+
+            .headings { 
+                display:flex;
+                flex-direction: row;
+                list-style: none;
+                text-align:center;
+
+                .heading {
+                    width: 25%;
+                    color: $darkGrey;
+                    font-size: 1.25rem;
+                    cursor: pointer;
+                    transition: .3s ease-in-out;     
+                    
+                    &.active {
+                        color: $primaryColor;
+                    }
+
+                    &:hover {
+                        color: $primaryColor;
+                    }
+                }
+
+            }
+
+            .slider {
+                width:100%;
+                height: 3px;
+                background: #f1f1f1;
+                margin: 1.25em auto 0 auto;
+
+                .bar {
+                    width: 25%;
+                    height: 3px;
+                    margin-left: 0;
+                    background: $primaryColor;
+                    transition: .5s ease-in-out;
+
+                    &.pos-community {
+                        margin-left: 25%;
+                    }
+
+                    &.pos-followers {
+                        margin-left: 50%;
+                    }
+
+                    &.pos-stats {
+                        margin-left: 75%;
+                    }
                 }
             }
         }
