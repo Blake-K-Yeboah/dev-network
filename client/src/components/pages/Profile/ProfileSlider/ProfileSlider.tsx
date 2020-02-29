@@ -3,6 +3,7 @@ import Headings from './Headings'
 import Slidebar from './Slidebar'
 import Projects from './Sections/Projects'
 import { Iuser } from '../../../../types'
+import Followers from './Sections/Followers';
 
 interface Iprops {
     profile: Iuser
@@ -14,6 +15,7 @@ const ProfileSlider = (props: Iprops) => {
             <Headings />
             <Slidebar />
             <Projects profile={props.profile} />
+            <Followers profile={props.profile} />
         </div>
     )
 }
