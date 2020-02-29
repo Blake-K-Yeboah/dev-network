@@ -612,6 +612,21 @@ body {
                 }
             }
 
+            .follower-section {
+                position:absolute;
+                bottom: 50px;
+                height: 335px;
+                width:100%;
+                transition: .5s ease-in-out;
+                z-index: 1;
+                opacity: 1;
+
+                &.hidden {
+                    opacity: 0;
+                    z-index: -1;
+                }
+            }
+
             .project-section {
                 z-index: 1;
                 opacity: 1;
