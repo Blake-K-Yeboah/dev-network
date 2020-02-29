@@ -19,7 +19,7 @@ const Headings = inject('usersStore')(observer(({ usersStore }) => {
                 Followers
             </li>
             <li className={`heading ${usersStore.activeTab === 'stats' ? 'active' : ''}`} onClick={() => changeTab('stats')}>
-                Statistics
+                Analytics
             </li>
         </ul>
     )
