@@ -1,10 +1,17 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { inject, observer } from 'mobx-react'
+import FollowerList from './FollowerList';
 
 const Followers = inject('usersStore')(observer(({ usersStore, profile }) => {
+
+    useEffect(() => {
+        usersStore.fetchUsers();
+    }, [usersStore]);
+
     return (
         <div className={`follower-section ${usersStore.activeTab !== 'followers' ? 'hidden' : ''}`}>
             <h1 className="followers-title">Total Followers: {profile.followers.length} </h1>
+            <FollowerList profile={profile} />
         </div>
     )
 }))
