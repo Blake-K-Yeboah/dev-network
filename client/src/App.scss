@@ -655,6 +655,29 @@ body {
                     opacity: 0;
                     z-index: -1;
                 }
+
+                .followers-title {
+                    font-weight: lighter;
+                    color: $darkGrey;
+                    font-size: 1.25rem;
+                    padding: 10px;
+                    
+                    @include large {
+                        font-size: 1rem;
+                    }
+                }
+
+                .follower {
+                    width: 80%;
+                    display:flex;
+
+                    .follower-icon {
+                        width: 10%;
+                        border-radius: 50%;
+                        margin-right: 20px;
+                    }
+
+                }
             }
 
             .project-section {
