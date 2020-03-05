@@ -1,3 +1,3 @@
 ## DevNetwork
 
-> This project is still being built.
+> This project is currently being built.
