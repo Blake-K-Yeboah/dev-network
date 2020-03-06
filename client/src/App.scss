@@ -637,6 +637,14 @@ body {
                 }
             }
 
+            .analytics {
+
+                &.hidden {
+                    opacity:0;
+                    z-index:-1;
+                }
+            }
+
             .follower-section {
                 position:absolute;
                 bottom: 50px;
@@ -663,7 +671,7 @@ body {
                 &::-webkit-scrollbar-track {
                     background: $darkGrey;
                 }
-                
+
 
                 &.hidden {
                     opacity: 0;
