@@ -10,7 +10,7 @@
 //////////////////////////////   Meida Query Mixins  //////////////////////////////
 
 @mixin large {
-    @media screen and (max-width: 1302px) {
+    @media screen and (max-width: 1502px) {
         @content;
     }
 }
@@ -641,15 +641,29 @@ body {
                 position:absolute;
                 bottom: 50px;
                 height: 335px;
+                overflow-y: scroll;
                 width:100%;
                 transition: .5s ease-in-out;
                 z-index: 1;
                 opacity: 1;
 
                 @include large {
-                    height: 192px;
-                    bottom: 125px;
+                    height: 150px;
+                    bottom: 167.5px;
                 }
+
+                &::-webkit-scrollbar {
+                    width:3px;
+                }
+        
+                &::-webkit-scrollbar-thumb {
+                    background: $primaryColor;
+                }
+        
+                &::-webkit-scrollbar-track {
+                    background: $darkGrey;
+                }
+                
 
                 &.hidden {
                     opacity: 0;
@@ -660,21 +674,44 @@ body {
                     font-weight: lighter;
                     color: $darkGrey;
                     font-size: 1.25rem;
-                    padding: 10px;
+                    padding: 20px;
                     
                     @include large {
                         font-size: 1rem;
+                        padding: 10px;
                     }
                 }
 
                 .follower {
                     width: 80%;
                     display:flex;
+                    margin: 1em auto 0 auto;
+
+                    &:not(:last-of-type) {
+                        padding-bottom: 1em;
+                        border-bottom: 1px solid lighten($lighterGrey, 25%);
+                    }
 
                     .follower-icon {
-                        width: 10%;
+                        width: 50px;
                         border-radius: 50%;
                         margin-right: 20px;
+                    }
+
+                    .btn  {
+                        width: 125px;
+                        margin-left: auto;
+
+                        @include large {
+                            width: 100px;
+                        }
+                    }
+
+                    .name {
+                        font-size: 1.5rem;
+                        color: $darkGrey;
+                        font-weight: lighter;
+                        line-height: 50px;
                     }
 
                 }
