@@ -638,10 +638,50 @@ body {
             }
 
             .analytics {
+                position: absolute;
+                bottom: 50px;
+                height: 335px;
+                width: 100%;
+                z-index: 1;
+                opacity: 1;
+                transition: .5s ease-in-out;
 
+                .grid {
+                    width: 100%;
+                    display:grid;
+                    grid-template-columns: repeat(4, 1fr);
+
+                    .analytic-box {
+                        width: 80%;
+                        height:125px;
+                        margin: 30px auto 0 auto;
+                        background:lighten($lighterGrey, 47.5%);
+                        border-radius: 15px;
+                        
+                        .analytic-title {
+                            font-size: 1rem;
+                            font-weight: lighter;
+                            color: $darkGrey;
+                            text-align:center;
+                            padding: 20px 0 10px 0;    
+                        }
+
+                        .analytic-value {
+                            font-size: 3rem;
+                            text-align:center;
+                            color: $primaryColor;
+                            font-weight: normal;
+                        }
+                    }
+                }
                 &.hidden {
                     opacity:0;
                     z-index:-1;
+                }
+
+                @include large {
+                    height: 192px;
+                    bottom: 125px;
                 }
             }
 
