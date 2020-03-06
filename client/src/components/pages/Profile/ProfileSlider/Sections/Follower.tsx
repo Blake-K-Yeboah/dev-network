@@ -1,7 +1,13 @@
 import React from 'react'
-import { inject, observer } from 'mobx-react'
+import { Iuser } from '../../../../../types';
 
-const Follower = inject('usersStore')(observer(({ usersStore, follower }) => {
+interface Iprops {
+    follower: Iuser;
+}
+const Follower = (props: Iprops) => {
+
+    const { follower } = props;
+
     return (
         <div className="follower">
             <img className="follower-icon" src={`/uploads/profile/${follower.profileIcon}`} alt={follower.username} />
@@ -11,6 +17,6 @@ const Follower = inject('usersStore')(observer(({ usersStore, follower }) => {
             <button className="btn outline">View Profile</button>
         </div>
     )
-}))
+}
 
 export default Follower;
