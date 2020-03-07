@@ -3,6 +3,7 @@ import { inject, observer } from 'mobx-react';
 import Spinner from '../../Spinner';
 import ProfileSlider from './ProfileSlider/ProfileSlider';
 import Axios from 'axios';
+import { FaPencilAlt } from 'react-icons/fa';
 
 const ProfileHeader = inject("authStore", "usersStore")(observer(({ authStore, profile, usersStore }) => {
 
@@ -26,6 +27,12 @@ const ProfileHeader = inject("authStore", "usersStore")(observer(({ authStore, p
         }
     }
 
+    const iconStyle = {
+        position: 'relative' as 'relative',
+        left: 6,
+        top: 2
+    }
+
     return (
         <>
             {!profile ? <Spinner />
@@ -47,7 +54,7 @@ const ProfileHeader = inject("authStore", "usersStore")(observer(({ authStore, p
 
                             {!userCheck && followCheck ? <button className="btn primary">Message</button> : ''}
 
-                            {userCheck ? <button className="btn warning">Edit Profile</button> : ''}
+                            {userCheck ? <button className="btn warning edit">Edit Profile <FaPencilAlt style={iconStyle} /> </button> : ''}
 
                         </div>
 
