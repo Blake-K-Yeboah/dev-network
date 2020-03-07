@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { inject, observer } from 'mobx-react';
 import { useHistory } from 'react-router-dom';
 import Axios from 'axios';
+import { FaSearch, FaUser, FaUserTimes } from 'react-icons/fa';
 
 const Sidebar = inject('authStore', 'projectStore', 'usersStore')(observer(({ authStore, projectStore, usersStore }) => {
 
@@ -36,6 +37,8 @@ const Sidebar = inject('authStore', 'projectStore', 'usersStore')(observer(({ au
 
     const route = window.location.pathname;
 
+    const iconStyle = { position: 'relative' as 'relative', left: 6, top: 2 };
+
     return (
         <div className={`sidebar ${status ? 'open' : ''}`}>
             <span className="toggler" onClick={() => setStatus(!status)}>{status ? '<' : '>'}</span>
@@ -52,17 +55,17 @@ const Sidebar = inject('authStore', 'projectStore', 'usersStore')(observer(({ au
 
             <h4 className={`small ${hideStatus}`}>{user.username as string} ~ {user.followers.length} Followers</h4>
 
-            <button className={`btn primary ${hideStatus}`} onClick={redirectToProfile}>View Profile</button>
+            <button className={`btn primary ${hideStatus}`} onClick={redirectToProfile}>View Profile <FaUser style={iconStyle} /></button>
 
             <br />
 
             <button className={`btn outline ${hideStatus} ${route !== '/projects' ? 'hidden' : ''}`} onClick={(): void => projectStore.toggleStatus()}>Post A Project</button>
 
-            <button className={`btn outline ${hideStatus} ${route !== '/users' ? 'hidden' : ''}`} onClick={(): void => usersStore.toggleSearchModalStatus()}>Search Users</button>
+            <button className={`btn outline ${hideStatus} ${route !== '/users' ? 'hidden' : ''}`} onClick={(): void => usersStore.toggleSearchModalStatus()}>Search Users <FaSearch style={iconStyle} /></button>
 
             <br />
 
-            <button className={`btn danger ${hideStatus}`} onClick={logOutHandler}>Log Out</button>
+            <button className={`btn danger ${hideStatus}`} onClick={logOutHandler}>Log Out <FaUserTimes style={iconStyle} /></button>
         </div>
     )
 }))
