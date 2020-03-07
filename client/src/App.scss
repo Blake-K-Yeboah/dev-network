@@ -564,6 +564,14 @@ body {
                     @include large {
                         width: 100px;
                     }
+
+                    &.edit {
+                        width: 125px;
+                        position:absolute;
+                        right: 175px;
+                        bottom: 50%;
+                        transform: translateY(50%);
+                    }
                 }
             }
         }
