@@ -18,19 +18,19 @@ const Analytics = inject('usersStore', 'projectStore')(observer(({ usersStore, p
 
     const stats = [
         {
-            title: 'Total Likes',
+            title: 'Likes',
             value: totalLikes ? totalLikes : '...'
         },
         {
-            title: 'Total Dislikes',
+            title: 'Dislikes',
             value: totalDislikes ? totalDislikes : '...'
         },
         {
-            title: 'Total Projects',
+            title: 'Projects',
             value: usersProjects ? usersProjects.length : '...'
         },
         {
-            title: 'Total Followers',
+            title: 'Followers',
             value: profile.followers.length
         }
     ]
