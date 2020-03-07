@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { inject, observer } from 'mobx-react';
 import { useHistory } from 'react-router-dom';
 import Axios from 'axios';
-import { FaSearch, FaUser, FaUserTimes } from 'react-icons/fa';
+import { FaSearch, FaUser, FaUserTimes, FaPlus } from 'react-icons/fa';
 
 const Sidebar = inject('authStore', 'projectStore', 'usersStore')(observer(({ authStore, projectStore, usersStore }) => {
 
@@ -59,7 +59,7 @@ const Sidebar = inject('authStore', 'projectStore', 'usersStore')(observer(({ au
 
             <br />
 
-            <button className={`btn outline ${hideStatus} ${route !== '/projects' ? 'hidden' : ''}`} onClick={(): void => projectStore.toggleStatus()}>Post A Project</button>
+            <button className={`btn outline ${hideStatus} ${route !== '/projects' ? 'hidden' : ''}`} onClick={(): void => projectStore.toggleStatus()}>Post A Project <FaPlus style={iconStyle} /></button>
 
             <button className={`btn outline ${hideStatus} ${route !== '/users' ? 'hidden' : ''}`} onClick={(): void => usersStore.toggleSearchModalStatus()}>Search Users <FaSearch style={iconStyle} /></button>
 
