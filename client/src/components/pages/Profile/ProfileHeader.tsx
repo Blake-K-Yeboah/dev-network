@@ -4,6 +4,7 @@ import Spinner from '../../Spinner';
 import ProfileSlider from './ProfileSlider/ProfileSlider';
 import Axios from 'axios';
 import { FaPencilAlt } from 'react-icons/fa';
+import { NavLink } from 'react-router-dom';
 
 const ProfileHeader = inject("authStore", "usersStore")(observer(({ authStore, profile, usersStore }) => {
 
@@ -54,7 +55,9 @@ const ProfileHeader = inject("authStore", "usersStore")(observer(({ authStore, p
 
                             {!userCheck && followCheck ? <button className="btn primary">Message</button> : ''}
 
-                            {userCheck ? <button className="btn warning edit">Edit Profile <FaPencilAlt style={iconStyle} /> </button> : ''}
+                            <NavLink to={`/profile/edit/${profile.username.replace('@', '')}`}>
+                                {userCheck ? <button className="btn warning edit">Edit Profile <FaPencilAlt style={iconStyle} /> </button> : ''}
+                            </NavLink>
 
                         </div>
 
