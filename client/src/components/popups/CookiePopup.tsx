@@ -11,7 +11,7 @@ const CookiePopup = inject('authStore')(observer(({ authStore }) => {
 
     return (
         <div className={`popup ${status ? '' : 'hidden'}`}>
-            <p className="popup-text">This website uses cookies for secure information..</p>
+            <p className="popup-text">This website uses cookies to improve your experience</p>
             <button className="btn primary" onClick={() => setStatus(false)}>Okay!</button>
         </div>
     )
