@@ -125,7 +125,7 @@ const RegisterForm = inject('authStore')(observer(({ authStore }) => {
                 <div className="form-group">
                     <div className="input-container">
                         <label htmlFor="email" className={`input-label ${userInput.email !== '' ? 'valid' : ''} ${authStore.error && authStore.error.email ? 'error' : ''}`}>Email</label>
-                        <input type="text" className={`input ${authStore.error && authStore.error.email ? 'error' : ''}`} id="email" onChange={onChange} value={userInput.email} onBlur={onBlur} onFocus={onFocus} />
+                        <input type="text" className={`input ${authStore.error && (authStore.error.email || authStore.error.emailnotfound) ? 'error' : ''}`} id="email" onChange={onChange} value={userInput.email} onBlur={onBlur} onFocus={onFocus} />
                     </div>
                 </div>
                 <div className="form-group">
