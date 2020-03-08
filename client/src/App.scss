@@ -508,8 +508,8 @@ body {
         .edit-grid {
             display: grid;
             grid-template-areas: 
-                        "info info pic pic pic" // 2: 3 ratio
-                        "info info header header header";
+                        "info pic" 
+                        "info header";
             width:60vw;
             height:55vh;
 
