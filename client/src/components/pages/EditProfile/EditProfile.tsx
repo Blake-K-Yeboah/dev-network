@@ -12,8 +12,8 @@ const EditProfile = inject('authStore')(observer(({ authStore }) => {
         <>
 
             <Helmet>
-                
-                <title>DevNetwork - Editing Profile</title>
+
+                <title>DevNetwork - Editing {authStore.user.firstname}'s Profile</title>
 
             </Helmet>
 
