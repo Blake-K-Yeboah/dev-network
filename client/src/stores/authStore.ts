@@ -8,7 +8,7 @@ import { Iuser } from '../types';
 class authstore {
 
     // Store JWT Token
-    @observable token: string = document.cookie.split('=')[1];
+    @observable token: string | null = document.cookie.split('=')[1];
 
     // Store authenticated boolean
     @observable isAuthenticated: boolean = this.token ? true : false;
@@ -34,9 +34,9 @@ class authstore {
 
     // Action to set token
     @action
-    setToken(token: string): void {
+    setToken(token: string | null): void {
         this.token = token;
-        this.isAuthenticated = true;
+        this.isAuthenticated = token ? true : false;
     }
 
 }
