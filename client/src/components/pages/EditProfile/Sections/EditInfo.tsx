@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { inject, observer } from 'mobx-react'
 
+
 const EditInfo = inject('authStore')(observer(({ authStore }) => {
 
     const [userInfo, setUserInfo] = useState({
