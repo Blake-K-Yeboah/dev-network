@@ -174,6 +174,20 @@ router.post('/:id/unfollow', (req, res) => {
 
 });
 
+// Update User Route
+router.put('/:id', (req, res) => {
+    const id = req.params.id;
+    const newData = {
+        firstname: req.body.userInfo.firstname,
+        lastname: req.body.userInfo.lastname,
+        username: req.body.userInfo.username
+    };
+
+    User.findByIdAndUpdate(id, newData, (err, doc) => {
+        if (err) return res.send(500, err);
+        res.json(doc);
+    });
+});
 
 // Export Router
 module.exports = router;
