@@ -65,3 +65,8 @@ export interface IUsersStore {
     activeTab: string,
     setActiveTab: (newTab: string) => void
 }
+
+// For Components with Stores as props
+export interface IStoreProps {
+    [storeName: string]: any
+}
