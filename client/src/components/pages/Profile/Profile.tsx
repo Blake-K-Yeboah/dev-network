@@ -18,7 +18,7 @@ const Profile = inject("usersStore", "projectStore")(observer(({ usersStore, pro
 
     }, [usersStore, projectStore]);
 
-    const activeUser = usersStore.users ? usersStore.users.filter((user: Iuser) => user.username.replace('@', '') === match.params.username)[0] : null;
+    const activeUser: Iuser | null = usersStore.users ? usersStore.users.filter((user: Iuser) => user.username.replace('@', '') === match.params.username)[0] : null;
 
     return (
         <>

@@ -6,14 +6,19 @@ import Footer from '../../layout/Footer'
 import Sidebar from '../Projects/Sidebar'
 import EditHeader from './EditHeader'
 import { Helmet } from 'react-helmet';
+import { IAuthStore } from '../../../types';
 
-const EditProfile = inject('authStore')(observer(({ authStore }) => {
+interface Iprops {
+    authStore?: IAuthStore,
+}
+const EditProfile = inject('authStore')(observer(({ authStore }: Iprops) => {
+
     return (
         <>
 
             <Helmet>
 
-                <title>DevNetwork - Editing {authStore.user.firstname}'s Profile</title>
+                <title>DevNetwork - Editing {authStore ? authStore.user.firstname : ''}'s Profile</title>
 
             </Helmet>
 

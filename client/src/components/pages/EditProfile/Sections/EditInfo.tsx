@@ -1,5 +1,7 @@
 import React, { useState } from 'react'
 import { inject, observer } from 'mobx-react'
+import Axios from 'axios';
+import jwt_decode from 'jwt-decode';
 
 
 const EditInfo = inject('authStore')(observer(({ authStore }) => {
@@ -20,7 +22,38 @@ const EditInfo = inject('authStore')(observer(({ authStore }) => {
         const info = { ...userInfo, username: `@${userInfo.username}` };
 
         // Insert Request
+        Axios.put(`/api/users/${authStore.user.id}`, info).then(res => {
+            // Set token to cookies
+            const { token } = res.data;
 
+            let currentDate = new Date();
+
+            currentDate.setMonth(currentDate.getMonth() + 1);
+
+            // Cookie Expires in 1 month
+            document.cookie = `jwtToken=${token}; expires=${currentDate}`;
+
+            authStore.setToken(token);
+
+            // Set token to Auth header
+            if (token) {
+                // Apply authorization token to every request if logged in
+                Axios.defaults.headers.common["Authorization"] = token;
+            } else {
+                // Delete auth header
+                delete Axios.defaults.headers.common["Authorization"];
+            }
+
+            // Decode token to get user data
+            const decoded = jwt_decode(token);
+
+            // Set current user
+            authStore.setCurrentUser(decoded);
+
+            // Alert Success
+            alert('Successfully Updated');
+
+        }).catch(err => alert('There was an error updating your account.'));
     }
 
     return (
