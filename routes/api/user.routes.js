@@ -178,14 +178,46 @@ router.post('/:id/unfollow', (req, res) => {
 router.put('/:id', (req, res) => {
     const id = req.params.id;
     const newData = {
-        firstname: req.body.userInfo.firstname,
-        lastname: req.body.userInfo.lastname,
-        username: req.body.userInfo.username
+        firstname: req.body.firstname,
+        lastname: req.body.lastname,
+        username: req.body.username
     };
 
-    User.findByIdAndUpdate(id, newData, (err, doc) => {
-        if (err) return res.send(500, err);
-        res.json(doc);
+    // Add validation
+
+    User.findByIdAndUpdate(id, newData, (err, user) => {
+
+        // Create JWT Payload
+        const payload = {
+            id: user.id,
+            firstname: user.firstname,
+            lastname: user.lastname,
+            username: user.username,
+            bio: user.bio,
+            email: user.email,
+            createdOn: user.createdON,
+            profileIcon: user.profileIcon,
+            headerImg: user.headerImg,
+            messageGroups: user.messageGroups,
+            github: user.github,
+            portfolio: user.portfolio,
+            followers: user.followers
+        };
+
+        // Sign token
+        jwt.sign(
+            payload,
+            keys.secretOrKey,
+            {
+                expiresIn: 31556926 // 1 year in seconds
+            },
+            (err, token) => {
+                res.json({
+                    success: true,
+                    token: "Bearer " + token
+                });
+            }
+        );
     });
 });
 
