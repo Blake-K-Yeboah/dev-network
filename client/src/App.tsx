@@ -69,7 +69,7 @@ const App: React.FC = () => {
 
             if (authStore.user && authStore.user.username.replace('@', '') !== props.match.params.username) return <Redirect to="/" />
 
-            return <EditProfile {...props} />
+            return <EditProfile />
           }} />
 
           <Route exact path="/about" component={About} />
