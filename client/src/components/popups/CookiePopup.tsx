@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react'
 import { inject, observer } from 'mobx-react';
+import { IStoreProps } from '../../types';
 
-const CookiePopup = inject('authStore')(observer(({ authStore }) => {
+const CookiePopup = inject('authStore')(observer(({ authStore }: IStoreProps) => {
 
     useEffect(() => {
         setTimeout(() => setStatus(!authStore.isAuthenticated), 2250);

@@ -7,8 +7,9 @@ import Container from '../../layout/Container';
 import Header from './Header';
 import Sidebar from '../Projects/Sidebar';
 import SearchModal from './SearchModal';
+import { IStoreProps } from '../../../types';
 
-const Users = inject("usersStore")(observer(({ usersStore }) => {
+const Users = inject("usersStore")(observer(({ usersStore }: IStoreProps) => {
 
     useEffect(() => {
         usersStore.fetchUsers();

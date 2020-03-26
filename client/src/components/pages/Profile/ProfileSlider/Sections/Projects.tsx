@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react'
 import { inject, observer } from 'mobx-react'
-import { IProject } from '../../../../../types';
+import { IProject, IStoreProps } from '../../../../../types';
 import Spinner from '../../../../Spinner';
 import ProfileProject from './ProfileProject';
 
-const Projects = inject('usersStore', 'projectStore', 'authStore')(observer(({ usersStore, projectStore, authStore, profile }) => {
+const Projects = inject('usersStore', 'projectStore', 'authStore')(observer(({ usersStore, projectStore, authStore, profile }: IStoreProps) => {
 
     useEffect(() => {
         projectStore.fetchProjects();

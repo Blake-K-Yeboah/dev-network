@@ -2,8 +2,9 @@ import React from 'react'
 import { observer, inject } from 'mobx-react'
 import { IoIosCode, IoMdEye, IoMdThumbsDown, IoMdThumbsUp } from 'react-icons/io';
 import Axios from 'axios';
+import { IStoreProps } from '../../../../../types';
 
-const ProfileProject = inject("authStore", "projectStore")(observer(({ authStore, project, projectStore }) => {
+const ProfileProject = inject("authStore", "projectStore")(observer(({ authStore, project, projectStore }: IStoreProps) => {
 
     const likeCheck = project ? project.likes.includes(authStore.user.id) : false;
 

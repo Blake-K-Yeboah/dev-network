@@ -1,9 +1,9 @@
 import React, { useEffect } from 'react'
 import { inject, observer } from 'mobx-react'
 import AnalyticBox from './AnalyticBox'
-import { IProject } from '../../../../../types';
+import { IProject, IStoreProps } from '../../../../../types';
 
-const Analytics = inject('usersStore', 'projectStore')(observer(({ usersStore, profile, projectStore }) => {
+const Analytics = inject('usersStore', 'projectStore')(observer(({ usersStore, profile, projectStore }: IStoreProps) => {
 
     useEffect(() => {
         usersStore.fetchUsers();

@@ -1,12 +1,12 @@
 import React from 'react'
 import { inject, observer } from 'mobx-react'
 import Spinner from '../../../Spinner';
-import { IProject, Iuser } from '../../../../types';
+import { IProject, Iuser, IStoreProps } from '../../../../types';
 import { IoIosCode, IoMdEye, IoMdThumbsDown, IoMdThumbsUp } from 'react-icons/io';
 import { NavLink } from 'react-router-dom';
 import Axios from 'axios';
 
-const Project = inject('projectStore', 'authStore', 'usersStore')(observer(({ projectStore, authStore, usersStore }) => {
+const Project = inject('projectStore', 'authStore', 'usersStore')(observer(({ projectStore, authStore, usersStore }: IStoreProps) => {
 
     const project: IProject | null = projectStore.projects ? projectStore.projects[projectStore.activeProjectIndex] : null;
 

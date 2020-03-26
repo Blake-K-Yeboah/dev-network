@@ -3,8 +3,9 @@ import { inject, observer } from 'mobx-react';
 import { useHistory } from 'react-router-dom';
 import Axios from 'axios';
 import { FaSearch, FaUser, FaUserTimes, FaPlus } from 'react-icons/fa';
+import { IStoreProps } from '../../../types';
 
-const Sidebar = inject('authStore', 'projectStore', 'usersStore')(observer(({ authStore, projectStore, usersStore }) => {
+const Sidebar = inject('authStore', 'projectStore', 'usersStore')(observer(({ authStore, projectStore, usersStore }: IStoreProps) => {
 
     const [status, setStatus] = useState(false);
 

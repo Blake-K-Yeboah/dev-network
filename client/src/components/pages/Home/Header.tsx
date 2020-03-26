@@ -3,9 +3,10 @@ import { inject, observer } from 'mobx-react';
 import { NavLink, useHistory } from 'react-router-dom';
 import { MdError } from 'react-icons/md';
 import Axios from 'axios';
+import { IStoreProps } from '../../../types';
 
 const Header = inject('authStore')(
-    observer(({ authStore, page }) => {
+    observer(({ authStore, page }: IStoreProps) => {
 
         let history = useHistory();
 

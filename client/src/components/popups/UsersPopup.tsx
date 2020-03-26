@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react'
 import { inject, observer } from 'mobx-react';
 import { useHistory } from 'react-router-dom';
+import { IStoreProps } from '../../types';
 
-const UsersPopup = inject('authStore')(observer(({ authStore }) => {
+const UsersPopup = inject('authStore')(observer(({ authStore }: IStoreProps) => {
 
     useEffect(() => {
         setTimeout(() => setStatus(true), 5000);

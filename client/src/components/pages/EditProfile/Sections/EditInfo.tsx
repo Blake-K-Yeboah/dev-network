@@ -2,9 +2,10 @@ import React, { useState } from 'react'
 import { inject, observer } from 'mobx-react'
 import Axios from 'axios';
 import jwt_decode from 'jwt-decode';
+import { IStoreProps } from '../../../../types';
 
 
-const EditInfo = inject('authStore')(observer(({ authStore }) => {
+const EditInfo = inject('authStore')(observer(({ authStore }: IStoreProps) => {
 
     const [userInfo, setUserInfo] = useState({
         firstname: authStore.user.firstname,

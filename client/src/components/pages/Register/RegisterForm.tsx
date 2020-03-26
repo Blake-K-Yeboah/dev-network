@@ -6,8 +6,9 @@ import { FaEye } from 'react-icons/fa';
 import { inject, observer } from 'mobx-react';
 
 import { useHistory } from 'react-router-dom';
+import { IStoreProps } from '../../../types';
 
-const RegisterForm = inject('authStore')(observer(({ authStore }) => {
+const RegisterForm = inject('authStore')(observer(({ authStore }: IStoreProps) => {
 
     // User Input State
     const [userInput, setUserInput] = useState({

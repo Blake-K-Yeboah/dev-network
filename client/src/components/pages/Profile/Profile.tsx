@@ -6,9 +6,9 @@ import Sidebar from '../Projects/Sidebar';
 import Container from '../../layout/Container';
 import Footer from '../../layout/Footer';
 import ProfileHeader from './ProfileHeader';
-import { Iuser } from '../../../types';
+import { Iuser, IStoreProps } from '../../../types';
 
-const Profile = inject("usersStore", "projectStore")(observer(({ usersStore, projectStore, match }) => {
+const Profile = inject("usersStore", "projectStore")(observer(({ usersStore, projectStore, match }: IStoreProps) => {
 
     useEffect(() => {
 

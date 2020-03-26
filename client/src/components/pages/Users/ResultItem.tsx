@@ -2,8 +2,9 @@ import React from 'react'
 import Axios from 'axios';
 import { inject, observer } from 'mobx-react';
 import { useHistory } from 'react-router-dom';
+import { IStoreProps } from '../../../types';
 
-const ResultItem = inject("usersStore")(observer(({ usersStore, result, uid }) => {
+const ResultItem = inject("usersStore")(observer(({ usersStore, result, uid }: IStoreProps) => {
 
     let history = useHistory();
 

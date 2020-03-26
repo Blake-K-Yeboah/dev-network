@@ -8,8 +8,9 @@ import Header from './Header';
 import PostModal from './PostModal';
 import UsersPopup from '../../popups/UsersPopup';
 import Container from '../../layout/Container';
+import { IStoreProps } from '../../../types';
 
-const Projects = inject("projectStore", "usersStore")(observer(({ projectStore, usersStore }) => {
+const Projects = inject("projectStore", "usersStore")(observer(({ projectStore, usersStore }: IStoreProps) => {
 
     useEffect(() => {
         projectStore.fetchProjects();

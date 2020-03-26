@@ -6,12 +6,9 @@ import Footer from '../../layout/Footer'
 import Sidebar from '../Projects/Sidebar'
 import EditHeader from './EditHeader'
 import { Helmet } from 'react-helmet';
-import { IAuthStore } from '../../../types';
+import { IStoreProps } from '../../../types';
 
-interface Iprops {
-    authStore?: IAuthStore,
-}
-const EditProfile = inject('authStore')(observer(({ authStore }: Iprops) => {
+const EditProfile = inject('authStore')(observer(({ authStore }: IStoreProps) => {
 
     return (
         <>

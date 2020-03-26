@@ -1,8 +1,9 @@
 import React from 'react'
 import { inject, observer } from 'mobx-react'
 import SearchResults from './SearchResults';
+import { IStoreProps } from '../../../types';
 
-const SearchModal = inject("usersStore")(observer(({ usersStore }) => {
+const SearchModal = inject("usersStore")(observer(({ usersStore }: IStoreProps) => {
     return (
         <div className={`modal ${!usersStore.searchModalStatus ? 'hidden' : ''}`}>
             <span className="close-icon" onClick={() => usersStore.toggleSearchModalStatus()}>&times;</span>

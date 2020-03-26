@@ -5,8 +5,9 @@ import ProfileSlider from './ProfileSlider/ProfileSlider';
 import Axios from 'axios';
 import { FaPencilAlt } from 'react-icons/fa';
 import { NavLink } from 'react-router-dom';
+import { IStoreProps } from '../../../types';
 
-const ProfileHeader = inject("authStore", "usersStore")(observer(({ authStore, profile, usersStore }) => {
+const ProfileHeader = inject("authStore", "usersStore")(observer(({ authStore, profile, usersStore }: IStoreProps) => {
 
     const userCheck = profile && profile._id === authStore.user.id ? true : false;
 

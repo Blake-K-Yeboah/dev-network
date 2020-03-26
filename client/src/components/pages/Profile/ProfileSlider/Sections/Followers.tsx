@@ -1,8 +1,9 @@
 import React, { useEffect } from 'react'
 import { inject, observer } from 'mobx-react'
 import FollowerList from './FollowerList';
+import { IStoreProps } from '../../../../../types';
 
-const Followers = inject('usersStore')(observer(({ usersStore, profile }) => {
+const Followers = inject('usersStore')(observer(({ usersStore, profile }: IStoreProps) => {
 
     useEffect(() => {
         usersStore.fetchUsers();

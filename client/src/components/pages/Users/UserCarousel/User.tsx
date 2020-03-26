@@ -1,11 +1,11 @@
 import React from 'react'
 import { inject, observer } from 'mobx-react'
-import { Iuser } from '../../../../types';
+import { Iuser, IStoreProps } from '../../../../types';
 import Spinner from '../../../Spinner';
 import Axios from 'axios';
 import { NavLink } from 'react-router-dom';
 
-const User = inject("usersStore", "authStore")(observer(({ usersStore, authStore }) => {
+const User = inject("usersStore", "authStore")(observer(({ usersStore, authStore }: IStoreProps) => {
 
     const user: Iuser | null = usersStore.users ? usersStore.users[usersStore.activeUserIndex] : null;
 

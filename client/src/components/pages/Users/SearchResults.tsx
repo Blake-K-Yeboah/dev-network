@@ -1,10 +1,10 @@
 import React from 'react'
 import { observer, inject } from 'mobx-react'
-import { Iuser } from '../../../types';
+import { Iuser, IStoreProps } from '../../../types';
 import Spinner from '../../Spinner';
 import ResultItem from './ResultItem';
 
-const SearchResults = inject("usersStore", "authStore")(observer(({ usersStore, authStore }) => {
+const SearchResults = inject("usersStore", "authStore")(observer(({ usersStore, authStore }: IStoreProps) => {
 
     const results: Iuser[] | null = usersStore.users && usersStore.searchQuery.startsWith('@') ? usersStore.users.filter((user: Iuser) => user.username.toLowerCase().startsWith(usersStore.searchQuery.toLowerCase())) : usersStore.users ? usersStore.users.filter((user: Iuser) => user.firstname.toLowerCase().startsWith(usersStore.searchQuery.toLowerCase())) : null;
 

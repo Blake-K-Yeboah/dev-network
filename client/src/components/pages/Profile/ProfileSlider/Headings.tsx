@@ -1,7 +1,8 @@
 import React from 'react'
 import { inject, observer } from 'mobx-react'
+import { IStoreProps } from '../../../../types';
 
-const Headings = inject('usersStore')(observer(({ usersStore }) => {
+const Headings = inject('usersStore')(observer(({ usersStore }: IStoreProps) => {
 
     const changeTab = (newTab: string): void => {
         usersStore.setActiveTab(newTab);

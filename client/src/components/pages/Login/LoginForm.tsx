@@ -11,8 +11,9 @@ import jwt_decode from 'jwt-decode';
 
 import LoginError from './LoginError';
 import LoginSuccess from './LoginSuccess';
+import { IStoreProps } from '../../../types';
 
-const RegisterForm = inject('authStore')(observer(({ authStore }) => {
+const RegisterForm = inject('authStore')(observer(({ authStore }: IStoreProps) => {
 
     // User Input State 
     const [userInput, setUserInput] = useState({

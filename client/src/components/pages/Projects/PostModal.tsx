@@ -1,8 +1,9 @@
 import React, { useState } from 'react'
 import { inject, observer } from 'mobx-react';
 import Axios from 'axios';
+import { IStoreProps } from '../../../types';
 
-const PostModal = inject('authStore', 'projectStore')(observer(({ authStore, projectStore }) => {
+const PostModal = inject('authStore', 'projectStore')(observer(({ authStore, projectStore }: IStoreProps) => {
 
     // User Input State
     const [userInput, setUserInput] = useState({
