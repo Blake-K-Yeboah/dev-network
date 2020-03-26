@@ -29,3 +29,39 @@ export interface IProject {
 export interface ILoginErrorProps {
     error: string
 }
+
+export interface IAuthStore {
+    token: string | null,
+    isAuthenticated: boolean,
+    user: any, // jwt_decode returns type unknown
+    error: string | null,
+    setError: (err: string) => void,
+    setCurrentUser: (user: Iuser | null) => void,
+    setToken: (token: string | null) => void
+}
+
+export interface IProjectStore {
+    fetchProjects: () => void,
+    projects: IProject[] | null,
+    activeProjectIndex: number,
+    nextProject: () => void,
+    prevProject: () => void,
+    modalStatus: boolean,
+    toggleStatus: () => void,
+    error: string | null,
+    setError: (err: string) => void
+}
+
+export interface IUsersStore {
+    fetchUsers: () => void,
+    users: Iuser[] | null,
+    activeUserIndex: number,
+    nextUser: () => void,
+    prevUser: () => void,
+    searchModalStatus: boolean,
+    toggleSearchModalStatus: () => void,
+    searchQuery: string,
+    setSearchQuery: (newQuery: string) => void,
+    activeTab: string,
+    setActiveTab: (newTab: string) => void
+}
