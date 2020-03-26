@@ -1,5 +1,5 @@
 import { observable, action } from 'mobx';
-import { IProject } from '../types';
+import { IProject, IProjectStore } from '../types';
 import Axios from 'axios';
 
 class projectstore {
@@ -39,4 +39,4 @@ class projectstore {
     }
 }
 
-export const projectStore = new projectstore();
+export const projectStore: IProjectStore = new projectstore();

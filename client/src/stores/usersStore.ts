@@ -1,6 +1,6 @@
 import { action, observable } from 'mobx';
 import Axios from 'axios';
-import { Iuser } from '../types';
+import { Iuser, IUsersStore } from '../types';
 
 class usersstore {
 
@@ -39,4 +39,4 @@ class usersstore {
     }
 }
 
-export const usersStore = new usersstore();
+export const usersStore: IUsersStore = new usersstore();
