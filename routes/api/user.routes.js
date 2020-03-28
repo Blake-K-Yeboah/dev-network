@@ -8,6 +8,7 @@ const keys = require("../../config/keys");
 // Import Validation Functions
 const valdiateRegisterinput = require('../../validation/register');
 const validateLoginInput = require('../../validation/login');
+const validateProfileInfoInput = require('../../validation/profileinfo');
 
 // Import User Model
 const User = require('../../models/user.model');
@@ -47,7 +48,7 @@ router.post('/register', (req, res) => {
     const { errors, isValid } = valdiateRegisterinput(req.body);
 
     // Check Validation
-    if (isValid === false) {
+    if (!isValid) {
         return res.status(400).json(errors);
     }
 
@@ -176,14 +177,24 @@ router.post('/:id/unfollow', (req, res) => {
 
 // Update User Route
 router.put('/:id', (req, res) => {
+
+    // Form validation
+    const { errors, isValid } = validateLoginInput(req.body);
+
+    // Check validation
+    if (!isValid) {
+        return res.status(400).json(errors);
+    }
+
+    // Define User Id
     const id = req.params.id;
+
+    // Define Data from request body
     const newData = {
         firstname: req.body.firstname,
         lastname: req.body.lastname,
         username: req.body.username
     };
-
-    // Add validation
 
     User.findByIdAndUpdate(id, newData, (err, user) => {
 
