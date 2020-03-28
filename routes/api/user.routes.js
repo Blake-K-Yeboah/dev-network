@@ -179,7 +179,7 @@ router.post('/:id/unfollow', (req, res) => {
 router.put('/:id', (req, res) => {
 
     // Form validation
-    const { errors, isValid } = validateLoginInput(req.body);
+    const { errors, isValid } = validateProfileInfoInput(req.body);
 
     // Check validation
     if (!isValid) {
@@ -232,5 +232,143 @@ router.put('/:id', (req, res) => {
     });
 });
 
+// Upload Profile Pic User Route
+router.put('/:id/profilepic', (req, res) => {
+
+    // Define Image
+    let img;
+
+    // Check if there is an uploaded file
+    if (req.files) {
+
+        // Define Uploaded File
+        const file = req.files.file;
+
+        // Define New Name for file
+        const newName = `${req.body.userId}.${file.name.split('.')[1]}`;
+
+        // Set Image (defined above)
+        img = newName;
+
+        // Upload File
+        file.mv(`./client/public/uploads/profile/${newName}`, err => {
+            if (err) {
+                console.error(err);
+                return res.status(500).json({ error: 'Server Error. Try Again Later' });
+            }
+        });
+
+        User.findByIdAndUpdate(req.params.id, { profileIcon: img }, (err, user) => {
+
+            // Create JWT Payload
+            const payload = {
+                id: user.id,
+                firstname: user.firstname,
+                lastname: user.lastname,
+                username: user.username,
+                bio: user.bio,
+                email: user.email,
+                createdOn: user.createdON,
+                profileIcon: user.profileIcon,
+                headerImg: user.headerImg,
+                messageGroups: user.messageGroups,
+                github: user.github,
+                portfolio: user.portfolio,
+                followers: user.followers
+            };
+
+            // Sign token
+            jwt.sign(
+                payload,
+                keys.secretOrKey,
+                {
+                    expiresIn: 31556926 // 1 year in seconds
+                },
+                (err, token) => {
+                    res.json({
+                        success: true,
+                        token: "Bearer " + token
+                    });
+                }
+            );
+
+        });
+    } else {
+
+        // Return Error if no image was uploaded
+        return res.status(400).json({ error: 'You have to upload an image.' });
+
+    }
+});
+
+
+// Upload Profile Header User Route
+router.put('/:id/header', (req, res) => {
+
+    // Define Image
+    let img;
+
+    // Check if there is an uploaded file
+    if (req.files) {
+
+        // Define Uploaded File
+        const file = req.files.file;
+
+        // Define New Name for file
+        const newName = `${req.body.userId}.${file.name.split('.')[1]}`;
+
+        // Set Image (defined above)
+        img = newName;
+
+        // Upload File
+        file.mv(`./client/public/uploads/header/${newName}`, err => {
+            if (err) {
+                console.error(err);
+                return res.status(500).json({ error: 'Server Error. Try Again Later' });
+            }
+        });
+
+        User.findByIdAndUpdate(req.params.id, { headerImg: img }, (err, user) => {
+
+            // Create JWT Payload
+            const payload = {
+                id: user.id,
+                firstname: user.firstname,
+                lastname: user.lastname,
+                username: user.username,
+                bio: user.bio,
+                email: user.email,
+                createdOn: user.createdON,
+                profileIcon: user.profileIcon,
+                headerImg: user.headerImg,
+                messageGroups: user.messageGroups,
+                github: user.github,
+                portfolio: user.portfolio,
+                followers: user.followers
+            };
+
+            // Sign token
+            jwt.sign(
+                payload,
+                keys.secretOrKey,
+                {
+                    expiresIn: 31556926 // 1 year in seconds
+                },
+                (err, token) => {
+                    res.json({
+                        success: true,
+                        token: "Bearer " + token
+                    });
+                }
+            );
+
+        });
+    } else {
+
+        // Return Error if no image was uploaded
+        return res.status(400).json({ error: 'You have to upload an image.' });
+
+    }
+});
 // Export Router
 module.exports = router;
