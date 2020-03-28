@@ -1,5 +1,7 @@
 import React from 'react'
 import EditInfo from '../EditProfile/Sections/EditInfo'
+import EditProfilePic from './Sections/EditProfilePic'
+import EditProfileHeader from './Sections/EditProfileHeader'
 
 const EditHeader = () => {
     return (
@@ -9,12 +11,8 @@ const EditHeader = () => {
 
             <div className="edit-grid">
                 <EditInfo />
-                <div className="edit-profile-pic">
-                    <h2 className="heading">Profile Picture</h2>
-                </div>
-                <div className="edit-header">
-                    <h2 className="heading">Profile Header</h2>
-                </div>
+                <EditProfilePic />
+                <EditProfileHeader />
             </div>
 
         </div>
