@@ -37,6 +37,7 @@ const Analytics = inject('usersStore', 'projectStore')(observer(({ usersStore, p
 
     return (
         <div className={`analytics ${usersStore.activeTab !== "stats" ? 'hidden' : ''}`}>
+            <h1 className="heading">Analytics</h1>
             <div className="grid">
                 {stats.map(stat => (
                     <AnalyticBox title={stat.title} value={stat.value} key={stat.title} />
