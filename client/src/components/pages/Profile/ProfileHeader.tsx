@@ -6,6 +6,7 @@ import Axios from 'axios';
 import { FaPencilAlt } from 'react-icons/fa';
 import { NavLink } from 'react-router-dom';
 import { IStoreProps } from '../../../types';
+import NoProfile from './NoProfile';
 
 const ProfileHeader = inject("authStore", "usersStore")(observer(({ authStore, profile, usersStore }: IStoreProps) => {
 
@@ -37,36 +38,38 @@ const ProfileHeader = inject("authStore", "usersStore")(observer(({ authStore, p
 
     return (
         <>
-            {!profile ? <Spinner />
+            {!usersStore.users ? <Spinner />
 
-                : <div className="header profile">
+                : !profile ? <NoProfile />
 
-                    <img className="profile-header" src={`/uploads/header/${profile.headerImg}`} alt={`${profile.firstname}'s Header`} />
+                    : <div className="header profile">
 
-                    <img className="profile-pic" src={`/uploads/profile/${profile.profileIcon}`} alt={`${profile.firstname}'s Profile Icon`} />
+                        <img className="profile-header" src={`/uploads/header/${profile.headerImg}`} alt={`${profile.firstname}'s Header`} />
 
-                    <div className="profile-info">
+                        <img className="profile-pic" src={`/uploads/profile/${profile.profileIcon}`} alt={`${profile.firstname}'s Profile Icon`} />
 
-                        <h1 className="profile-name">{profile.firstname} {profile.lastname}</h1>
+                        <div className="profile-info">
 
-                        <h6 className="profile-username">{profile.username}</h6>
+                            <h1 className="profile-name">{profile.firstname} {profile.lastname}</h1>
 
-                        <div className="btn-group">
-                            {userCheck ? '' : <button className={`btn ${followCheck ? 'following' : 'primary'}`} onClick={followHandler}>{followCheck ? `Following ${profile.followers.length}` : `Follow ${profile.followers.length}`}</button>}
+                            <h6 className="profile-username">{profile.username}</h6>
 
-                            {!userCheck && followCheck ? <button className="btn primary">Message</button> : ''}
+                            <div className="btn-group">
+                                {userCheck ? '' : <button className={`btn ${followCheck ? 'following' : 'primary'}`} onClick={followHandler}>{followCheck ? `Following ${profile.followers.length}` : `Follow ${profile.followers.length}`}</button>}
 
-                            <NavLink to={`/profile/edit/${profile.username.replace('@', '')}`}>
-                                {userCheck ? <button className="btn warning edit">Edit Profile <FaPencilAlt style={iconStyle} /> </button> : ''}
-                            </NavLink>
+                                {!userCheck && followCheck ? <button className="btn primary">Message</button> : ''}
+
+                                <NavLink to={`/profile/edit/${profile.username.replace('@', '')}`}>
+                                    {userCheck ? <button className="btn warning edit">Edit Profile <FaPencilAlt style={iconStyle} /> </button> : ''}
+                                </NavLink>
+
+                            </div>
 
                         </div>
 
-                    </div>
+                        <ProfileSlider profile={profile} />
 
-                    <ProfileSlider profile={profile} />
-
-                </div>}
+                    </div>}
         </>
     )
 }));
