@@ -517,7 +517,11 @@ body {
                 color: $primaryColor;
                 font-weight:lighter;
                 text-align:center;
-                font-size: 1.15rem;
+                font-size: 1.5rem;
+
+                @include large {
+                    font-size: 1.15rem;
+                }
             }
 
             .edit-info, .edit-profile-pic, .edit-header {
@@ -530,32 +534,38 @@ body {
                     position:absolute;
                     top: 40px;
                     left:50%;
-                    transform: translateX(-50%);                    
+                    transform: translateX(-50%);  
+                    width:100%;                   
                 }
             }
 
             .edit-info {
                 grid-area: info;
                 border-right: 1px solid #ccc;
+                width: 100%;
 
                 .description {
                     color: #aaa;
                     font-weight: lighter;
-                    font-size: 1rem;
+                    font-size: 1.15rem;
                     width: 100%;
                     padding: 5px 0 20px 0;
+
+                    @include large {
+                        font-size: 1rem;
+                    }
                 }
 
                 .field-list {
-                    width:100%;
+                    width: 75%;
                     margin: auto;
 
                     .field-input {
                         position:relative;
                         left:50%;
                         transform:translateX(-50%);
-                        width: 100%;
-                        height: 30px;
+                        width: 90%;
+                        height: 35px;
                         border: 1px solid $lighterGrey;
                         border-radius: 5px;
                         transition: .3s ease-in-out;
@@ -566,34 +576,49 @@ body {
                             border-color: $primaryColor;
                             color: $primaryColor;
                         }
+
+                        @include large {
+                            height: 30px;
+                        }
                     }
 
                     .field:not(:first-of-type) {
-                        margin-top: 20px;
+                        margin-top: 30px;
+
+                        @include large {
+                            margin-top: 20px;
+                        }
                     }
 
                     .field-name {
                         margin-bottom: 10px;
-                        font-size: .85rem;
+                        font-size: 1.05rem;
                         color: $darkGrey;
                         font-weight:lighter;
                         text-align:center;
+
+                        @include large {
+                            font-size: .85rem;
+                        }
                     }
 
                     .btn {
-                        width: 125px;
-                        height: 35px;
                         position:relative;
-                        top: 30px;
+                        top: 40px;
                         left:50%;
                         transform: translateX(-50%);
+
+                        @include large {
+                            width: 125px;
+                            height: 35px;
+                            top: 30px;
+                        }
                     }
                 }
             }
 
             .edit-profile-pic {
                 grid-area: pic;
-                // border-bottom: 1px solid #ccc;
             }
 
             .edit-header {
@@ -750,6 +775,14 @@ body {
                 opacity: 1;
                 transition: .5s ease-in-out;
 
+                .heading {
+                    font-weight: lighter;
+                    color: $lighterGrey;
+                    font-size: 1.35rem;
+                    text-align:center;
+                    margin: 2em 0 1.5em;
+                }
+
                 .grid {
                     width: 100%;
                     display:grid;
@@ -757,9 +790,9 @@ body {
 
                     .analytic-box {
                         width: 80%;
-                        height:125px;
-                        margin: 30px auto 0 auto;
-                        background:lighten($lighterGrey, 47.5%);
+                        height: 135px;
+                        margin: 0 auto;
+                        background:lighten($lighterGrey,  50.5%);
                         border-radius: 15px;
                         
                         .analytic-title {
