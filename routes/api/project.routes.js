@@ -128,5 +128,16 @@ router.post('/:id/:action', (req, res) => {
             // No Default
             break;
     }
-})
+});
+
+// Delete Project Route
+router.delete('/:id', (req, res) => {
+    const projectid = req.params.id;
+
+    Project.findByIdAndDelete(projectid, (err) => {
+        if (err) return res.send(500, err);
+    });
+
+});
+
 module.exports = router;
