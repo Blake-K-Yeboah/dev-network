@@ -1546,7 +1546,22 @@ div.success {
 
     .project-img {
         width:100%;
-        border-radius: 15px 15px 0px 0px
+        border-radius: 15px 15px 0px 0px;
+    }
+
+    .project-delete-icon {
+        color: $lighterGrey;
+        font-size: 1.05rem;
+        cursor:pointer;
+        transition: .2s ease-in-out;
+        position: absolute;
+        right: 20px;
+        top: 55%;
+        transform:translateY(-50%);
+
+        &:hover {
+            color: lighten($lighterGrey, 20%);
+        }
     }
 
     .project-title {
