@@ -3,8 +3,9 @@ import { inject, observer } from 'mobx-react'
 import Spinner from '../../../Spinner';
 import { IProject, Iuser, IStoreProps } from '../../../../types';
 import { IoIosCode, IoMdEye, IoMdThumbsDown, IoMdThumbsUp } from 'react-icons/io';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useHistory } from 'react-router-dom';
 import Axios from 'axios';
+import { FaRegTrashAlt } from 'react-icons/fa';
 
 const Project = inject('projectStore', 'authStore', 'usersStore')(observer(({ projectStore, authStore, usersStore }: IStoreProps) => {
 
@@ -32,6 +33,32 @@ const Project = inject('projectStore', 'authStore', 'usersStore')(observer(({ pr
 
     const postedBy = project && usersStore.users ? usersStore.users.filter((user: Iuser) => user._id === project.userId)[0] : null;
 
+    const deleteProject = () => {
+
+        // Confirmation
+        const confirmation = window.confirm(`Are you sure you want to delete ${project ? project.title : null}`);
+
+        if (confirmation) {
+
+            Axios.delete(`/api/projects/${project ? project._id : null}`).then(res => {
+
+                // Alert Success
+                alert('Succesfully Deleted');
+
+                // Fetch Projects Again
+                projectStore.fetchProjects();
+
+                window.location.reload();
+
+            });
+
+        }
+    }
+
+    const delIcon = <span className="project-delete-icon" title="Delete Project" onClick={deleteProject}> <FaRegTrashAlt /> </span>
+
+
+
     return (
         <>
             {project ? <div className="project">
@@ -55,6 +82,7 @@ const Project = inject('projectStore', 'authStore', 'usersStore')(observer(({ pr
                 </div>
                 <div className="project-footer">
                     <p className="footer-text">Posted By <NavLink to={`/profile/${postedBy ? postedBy.username.replace('@', '') : 'Loading'}`} className="profile-link">{postedBy ? postedBy.username : 'Loading'}</NavLink></p>
+                    {postedBy && postedBy._id === authStore.user.id ? delIcon : ''}
                 </div>
             </div> : <Spinner />}
         </>
