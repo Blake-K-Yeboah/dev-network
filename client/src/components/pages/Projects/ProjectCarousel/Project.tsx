@@ -3,7 +3,7 @@ import { inject, observer } from 'mobx-react'
 import Spinner from '../../../Spinner';
 import { IProject, Iuser, IStoreProps } from '../../../../types';
 import { IoIosCode, IoMdEye, IoMdThumbsDown, IoMdThumbsUp } from 'react-icons/io';
-import { NavLink, useHistory } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import Axios from 'axios';
 import { FaRegTrashAlt } from 'react-icons/fa';
 
