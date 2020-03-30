@@ -19,6 +19,9 @@ const users = require('./routes/api/user.routes');
 // Require Project Router
 const projects = require('./routes/api/project.routes');
 
+// Require Community Router
+const community = require('./routes/api/community.routes');
+
 // Initialize Express
 const app = express();
 
@@ -58,6 +61,8 @@ app.use('/api/users', users);
 
 // Project Route
 app.use('/api/projects', projects);
+
+app.use('/api/community', community);
 
 // Define Port
 const port = process.env.PORT || 5000;
