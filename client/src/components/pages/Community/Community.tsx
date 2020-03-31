@@ -7,8 +7,10 @@ import { IStoreProps } from '../../../types'
 import ProjectsPopup from '../../popups/ProjectsPopup';
 import Sidebar from '../Projects/Sidebar'
 import Header from './Header'
+import CreateModal from './CreateModal'
+import { inject, observer } from 'mobx-react'
 
-const Community = (props: IStoreProps) => {
+const Community = inject("communityStore")(observer(({ communityStore }: IStoreProps) => {
     return (
         <>
             <Helmet>
@@ -30,8 +32,12 @@ const Community = (props: IStoreProps) => {
                 <Footer />
 
             </Container>
+
+            <CreateModal />
+
+            <div className={`overlay ${!communityStore.modalStatus ? 'hidden' : ''}`} onClick={() => communityStore.toggleStatus()}></div>
         </>
     )
-}
+}))
 
 export default Community
