@@ -6,7 +6,7 @@ const PostSchema = new Schema({
         type: String,
         required: true
     },
-    author: {
+    postedBy: {
         type: String,
         required: true
     },
@@ -23,10 +23,6 @@ const PostSchema = new Schema({
         default: []
     },
     dislikes: {
-        type: Array,
-        default: []
-    },
-    tags: {
         type: Array,
         default: []
     }
