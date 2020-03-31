@@ -26,6 +26,15 @@ export interface IProject {
     postedOn: Date
 }
 
+export interface IPost {
+    title: string,
+    postedBy: string,
+    content: string,
+    postedOn: Date,
+    likes: string[],
+    dislikes: string[]
+}
+
 export interface ILoginErrorProps {
     error: string
 }
@@ -64,6 +73,18 @@ export interface IUsersStore {
     setSearchQuery: (newQuery: string) => void,
     activeTab: string,
     setActiveTab: (newTab: string) => void
+}
+
+export interface ICommunityStore {
+    fetchPosts: () => void,
+    posts: IPost[] | null,
+    activePostIndex: number,
+    nextPost: () => void,
+    prevPost: () => void,
+    modalStatus: boolean,
+    toggleStatus: () => void,
+    error: string | null,
+    setError: (err: string) => void
 }
 
 // For Components with Stores as props
