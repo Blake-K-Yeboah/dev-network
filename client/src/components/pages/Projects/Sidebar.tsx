@@ -62,7 +62,7 @@ const Sidebar = inject('authStore', 'projectStore', 'usersStore')(observer(({ au
 
             <button className={`btn outline ${hideStatus} ${route !== '/projects' ? 'hidden' : ''}`} onClick={(): void => projectStore.toggleStatus()}>Post A Project <FaPlus style={iconStyle} /></button>
 
-            <button className={`btn outline ${hideStatus} ${route !== '/community' ? 'hidden' : ''}`}>Post An Article <FaPlus style={iconStyle} /></button>
+            <button className={`btn outline ${hideStatus} ${route !== '/community' ? 'hidden' : ''}`}>Create a Post <FaPlus style={iconStyle} /></button>
 
             <button className={`btn outline ${hideStatus} ${route !== '/users' ? 'hidden' : ''}`} onClick={(): void => usersStore.toggleSearchModalStatus()}>Search Users <FaSearch style={iconStyle} /></button>
 
