@@ -4,7 +4,9 @@ import Footer from '../../layout/Footer'
 import { Helmet } from 'react-helmet'
 import Container from '../../layout/Container'
 import { IStoreProps } from '../../../types'
+import ProjectsPopup from '../../popups/ProjectsPopup';
 import Sidebar from '../Projects/Sidebar'
+import Header from './Header'
 
 const Community = (props: IStoreProps) => {
     return (
@@ -15,11 +17,15 @@ const Community = (props: IStoreProps) => {
 
             </Helmet>
 
+            <ProjectsPopup />
+
             <Navbar />
 
             <Container>
 
                 <Sidebar />
+
+                <Header />
 
                 <Footer />
 
