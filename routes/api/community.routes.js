@@ -4,6 +4,14 @@ const router = express.Router();
 // Import Post Model
 const Post = require('../../models/post.model');
 
+// Import Validation Function
+const validatePostInput = require('../../validation/post');
+
+const verifyToken = require('../../middleware/verifyToken');
+
+// Check User Token Middleware
+router.use(verifyToken);
+
 // Base Get Route
 router.get('/:id?', (req, res) => {
 
@@ -31,5 +39,25 @@ router.get('/:id?', (req, res) => {
     }
 });
 
+// Add a post
+router.post('/', (req, res) => {
+
+    // Validation
+    const { errors, isValid } = validatePostInput(req.body);
+
+    // Check Validation
+    if (isValid === false) {
+        return res.status(400).json(errors);
+    }
+
+    const newPost = new Post({
+        title: req.body.title,
+        content: req.body.content,
+        postedBy: req.body.postedBy
+    });
+
+    newPost.save().then(post => res.json(post)).catch(err => res.json(err));
+
+})
 // Export Router
 module.exports = router;
