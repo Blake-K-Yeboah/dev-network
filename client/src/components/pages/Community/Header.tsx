@@ -3,11 +3,12 @@ import { inject, observer } from 'mobx-react';
 import { IStoreProps } from '../../../types';
 import CommunityCarousel from './CommunityCarousel/CommunityCarousel';
 
-const Header = inject('communityStore')(observer(({ communityStore }: IStoreProps) => {
+const Header = inject('communityStore', 'usersStore')(observer(({ communityStore, usersStore }: IStoreProps) => {
 
     useEffect(() => {
         communityStore.fetchPosts();
-    }, [communityStore]);
+        usersStore.fetchUsers();
+    }, [communityStore, usersStore]);
 
     return (
         <div className="header community">

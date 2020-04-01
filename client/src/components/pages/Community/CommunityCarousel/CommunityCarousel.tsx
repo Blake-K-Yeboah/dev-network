@@ -3,7 +3,7 @@ import Previous from './Previous';
 import Next from './Next';
 import Post from './Post';
 
-const ProjectCarousel = () => {
+const CommunityCarousel = () => {
     return (
         <>
 
@@ -17,4 +17,4 @@ const ProjectCarousel = () => {
     )
 }
 
-export default ProjectCarousel
+export default CommunityCarousel
