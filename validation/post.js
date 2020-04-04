@@ -13,6 +13,10 @@ module.exports = function validatePostinput(data) {
         errors.content = "Content field is required";
     }
 
+    if (!data.emoji) {
+        errors.emoji = "Emoji is required";
+    }
+
     // Return errors and isValid Boolean
     return {
         errors,
