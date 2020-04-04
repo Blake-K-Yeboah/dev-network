@@ -10,6 +10,8 @@ const CreateModal = inject('authStore', 'communityStore')(observer(({ authStore,
         content: ''
     });
 
+    const [activeEmoji, setActiveEmoji] = useState(null);
+
     const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setUserInput({ ...userInput, [e.target.id]: e.target.value });
         if (e.target.value !== '') {
@@ -33,10 +35,11 @@ const CreateModal = inject('authStore', 'communityStore')(observer(({ authStore,
 
     const addPost = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        
+
         let data = {
             ...userInput,
-            postedBy: authStore.user.id
+            postedBy: authStore.user.id,
+            emoji: activeEmoji
         }
 
         Axios.post('/api/community', data).then(res => {
@@ -51,8 +54,10 @@ const CreateModal = inject('authStore', 'communityStore')(observer(({ authStore,
         })
     }
 
+    const emojis: string[] = ['😀', '😎', '👌', '👍', '👑', '👨🏼‍💻', '🌈', '🔥', '✨', '🏅', '🤑', '🤖', '👏', '👀', '👓', '⭐️', '🌊', '🍽', '🎯', '🧩'];
+
     return (
-        <div className={`modal small ${!communityStore.modalStatus ? 'hidden' : ''}`}>
+        <div className={`modal ${!communityStore.modalStatus ? 'hidden' : ''}`}>
             <span className="close-icon" onClick={() => communityStore.toggleStatus()}>&times;</span>
             <h1 className="title">Create a Post</h1>
             <form className="modal-form" autoComplete="off" onSubmit={addPost}>
@@ -67,6 +72,14 @@ const CreateModal = inject('authStore', 'communityStore')(observer(({ authStore,
                         <label htmlFor="content" className={`input-label ${userInput.content !== '' ? 'valid' : ''} ${communityStore.error && communityStore.error.content ? 'error' : ''}`}>Content</label>
                         <input type="text" className={`input large ${communityStore.error && communityStore.error.content ? 'error' : ''}`} id="content" value={userInput.content} onBlur={onBlur} onFocus={onFocus} onChange={onChange} />
                     </div>
+                </div>
+                <h3 className={`label ${communityStore.error ? 'error' : ''}`}>Emoji</h3>
+                <div className="emoji-container">
+                    {emojis.map(emoji => (
+                        <div className={`emoji-box ${activeEmoji === emoji ? 'active' : ''}`} onClick={() => setActiveEmoji(emoji)}>
+                            <span className="emoji">{emoji}</span>
+                        </div>
+                    ))}
                 </div>
                 <button type='submit' className="btn primary submit-btn">Post</button>
             </form>
