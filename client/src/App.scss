@@ -1427,6 +1427,10 @@ div.success {
         font-weight:lighter;
         color: $darkGrey;
         margin: -10px 0 20px 0;
+
+        &.error {
+            color: #ff0000;
+        }
     }
 
     .emoji-container {
