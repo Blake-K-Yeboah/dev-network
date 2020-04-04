@@ -53,7 +53,8 @@ router.post('/', (req, res) => {
     const newPost = new Post({
         title: req.body.title,
         content: req.body.content,
-        postedBy: req.body.postedBy
+        postedBy: req.body.postedBy,
+        emoji: req.body.emoji
     });
 
     newPost.save().then(post => res.json(post)).catch(err => res.json(err));
