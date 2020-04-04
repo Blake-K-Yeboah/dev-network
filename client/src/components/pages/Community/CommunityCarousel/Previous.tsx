@@ -4,7 +4,7 @@ import { IStoreProps } from '../../../../types';
 
 const Previous = inject('communityStore')(observer(({ communityStore }: IStoreProps) => {
     return (
-        <button className={`circle-btn next ${communityStore.posts && !communityStore.posts[communityStore.activePostIndex - 1] ? 'disabled' : ''}`} onClick={communityStore.prevPost}>
+        <button className={`circle-btn previous ${communityStore.posts && !communityStore.posts[communityStore.activePostIndex - 1] ? 'disabled' : ''}`} onClick={communityStore.prevPost}>
             <span className="icon">&lt;</span>
         </button>
     )
