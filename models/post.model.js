@@ -14,17 +14,13 @@ const PostSchema = new Schema({
         type: String,
         required: true
     },
+    emoji: {
+        type: String,
+        required: true
+    },
     postedOn: {
         type: Date,
         default: new Date()
-    },
-    likes: {
-        type: Array,
-        default: []
-    },
-    dislikes: {
-        type: Array,
-        default: []
     }
 });
 
