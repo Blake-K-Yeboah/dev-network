@@ -30,9 +30,8 @@ export interface IPost {
     title: string,
     postedBy: string,
     content: string,
-    postedOn: Date,
-    likes: string[],
-    dislikes: string[]
+    emoji: string,
+    postedOn: Date
 }
 
 export interface ILoginErrorProps {
