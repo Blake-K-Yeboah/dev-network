@@ -5,8 +5,8 @@ import { IPost, ICommunityStore } from '../types';
 class communitystore {
 
     @action
-    fetchPosts() {
-        Axios.get('/api/community').then(res => {
+    async fetchPosts() {
+        await Axios.get('/api/community').then(res => {
             this.posts = res.data.reverse();
         }).catch(err => console.error(err));
     }

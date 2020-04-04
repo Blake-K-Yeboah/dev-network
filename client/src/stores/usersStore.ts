@@ -4,8 +4,8 @@ import { Iuser, IUsersStore } from '../types';
 
 class usersstore {
 
-    @action fetchUsers() {
-        Axios.get('/api/users').then(res => this.users = res.data.reverse());
+    @action async fetchUsers() {
+        await Axios.get('/api/users').then(res => this.users = res.data.reverse());
     }
 
     @observable users: Iuser[] | null = null;

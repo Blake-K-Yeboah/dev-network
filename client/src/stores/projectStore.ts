@@ -5,8 +5,8 @@ import Axios from 'axios';
 class projectstore {
 
     @action
-    fetchProjects() {
-        Axios.get('/api/projects').then(res => {
+    async fetchProjects() {
+        await Axios.get('/api/projects').then(res => {
             this.projects = res.data.reverse();
         }).catch(err => console.error(err));
     }
