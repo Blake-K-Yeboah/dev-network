@@ -1,7 +1,10 @@
 import React from 'react'
-import { NavLink } from 'react-router-dom'
+import { useHistory } from 'react-router-dom';
 
 const AboutContent = () => {
+
+    let history = useHistory();
+
     return (
         <div className="header">
             <h1 className="title">About DevNetwork</h1>
@@ -10,8 +13,8 @@ const AboutContent = () => {
 
                 <img src="/img/logo.jpg" className="logo" alt="DevNetwork Logo" />
 
-                <p className="description ">DevNetwork is a social network built with MERN stack that allows developers to share their projects andd write posts about their favourite technologies. It was developed by Blake Yeboah, a fullstack developer based in Austraalia.
-                <NavLink to="/" className="link special">Go Back Home</NavLink> </p>
+                <p className="description ">DevNetwork is a social network built with MERN stack that allows developers to share their projects and write posts about their favourite technologies. It was developed by Blake Yeboah, a fullstack developer based in Austraalia.
+                <span className="link special" onClick={() => history.goBack()}>Go Back</span> </p>
 
             </div>
         </div>
