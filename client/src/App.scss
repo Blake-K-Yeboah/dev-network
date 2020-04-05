@@ -19,7 +19,7 @@
 
 $primaryColor: #0099FF;
 $darkGrey: #3E3E3E;
-$lighterGrey: #747474;
+$lighterGrey: #848484;
 
 //////////////////////////////  Base Styles  //////////////////////////////
 
@@ -821,9 +821,10 @@ body {
 
                     .analytic-box {
                         width: 80%;
+
                         height: 135px;
                         margin: 0 auto;
-                        background:lighten($lighterGrey,  50.5%);
+                        background:lighten($lighterGrey,  40.5%);
                         border-radius: 15px;
                         
                         .analytic-title {
@@ -1944,6 +1945,7 @@ div.success {
 }
 
 //////////////////////////////  Post Styles  //////////////////////////////
+
 .post {
     width: 30%;
     height: 50%;
@@ -2016,6 +2018,62 @@ div.success {
                     text-decoration: underline;
                 }
             }
+        }
+
+        .post-delete-icon {
+            color: $lighterGrey;
+            font-size: 1.05rem;
+            cursor:pointer;
+            transition: .2s ease-in-out;
+            position: absolute;
+            right: 20px;
+            top: 55%;
+            transform:translateY(-50%);
+
+            &:hover {
+                color: lighten($lighterGrey, 20%);
+            }
+        }
+    }
+}
+
+//////////////////////////////  Message Styles  //////////////////////////////
+
+.message-section {
+    width: 225px;
+    background: #fff;
+    height: 75px;
+    border-radius: 20px 0 0 20px;
+    position:absolute;
+    right: -170px;
+    top: -50px;
+    transition: .35s ease-in-out;
+
+    &:hover {
+        right: 0px;
+    }
+
+    .icon {
+        font-size: 1.5rem;
+        position:absolute;
+        left: 17.5px;
+        top:50%;
+        transform: translateY(-50%);
+    }
+
+    .view-messages {
+        color: $darkGrey;
+        font-weight: lighter;
+        font-size: 1.25rem;
+        position:absolute;
+        right: 15px;
+        top:50%;
+        transform:translateY(-50%);
+        cursor:pointer;
+        transition: .2s ease-in-out;
+
+        &:hover {
+            color: $primaryColor;
         }
     }
 }
