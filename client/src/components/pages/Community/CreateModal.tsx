@@ -76,7 +76,7 @@ const CreateModal = inject('authStore', 'communityStore')(observer(({ authStore,
                 <h3 className={`label ${communityStore.error ? 'error' : ''}`}>Emoji</h3>
                 <div className="emoji-container">
                     {emojis.map(emoji => (
-                        <div className={`emoji-box ${activeEmoji === emoji ? 'active' : ''}`} onClick={() => setActiveEmoji(emoji)}>
+                        <div className={`emoji-box ${activeEmoji === emoji ? 'active' : ''}`} onClick={() => setActiveEmoji(emoji)} key={emoji}>
                             <span className="emoji">{emoji}</span>
                         </div>
                     ))}
