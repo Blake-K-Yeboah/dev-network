@@ -31,7 +31,8 @@ export interface IPost {
     postedBy: string,
     content: string,
     emoji: string,
-    postedOn: Date
+    postedOn: Date,
+    _id: string
 }
 
 export interface ILoginErrorProps {
