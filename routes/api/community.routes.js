@@ -60,5 +60,16 @@ router.post('/', (req, res) => {
     newPost.save().then(post => res.json(post)).catch(err => res.json(err));
 
 })
+
+// Delete a post
+router.delete('/:id', (req, res) => {
+
+    const id = req.params.id;
+
+    Post.findByIdAndDelete(id, (err) => {
+        if (err) return res.send(500, err);
+    });
+
+})
 // Export Router
 module.exports = router;
