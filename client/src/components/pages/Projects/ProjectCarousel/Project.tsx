@@ -48,6 +48,7 @@ const Project = inject('projectStore', 'authStore', 'usersStore')(observer(({ pr
                 // Fetch Projects Again
                 projectStore.fetchProjects();
 
+                // ReLoad
                 window.location.reload();
 
             });
@@ -56,8 +57,6 @@ const Project = inject('projectStore', 'authStore', 'usersStore')(observer(({ pr
     }
 
     const delIcon = <span className="project-delete-icon" title="Delete Project" onClick={deleteProject}> <FaRegTrashAlt /> </span>
-
-
 
     return (
         <>
