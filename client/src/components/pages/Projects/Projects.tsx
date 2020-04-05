@@ -9,6 +9,7 @@ import PostModal from './PostModal';
 import UsersPopup from '../../popups/UsersPopup';
 import Container from '../../layout/Container';
 import { IStoreProps } from '../../../types';
+import MessageSection from '../../message/MessageSection';
 
 const Projects = inject("projectStore", "usersStore")(observer(({ projectStore, usersStore }: IStoreProps) => {
 
@@ -32,6 +33,8 @@ const Projects = inject("projectStore", "usersStore")(observer(({ projectStore, 
             <Container>
 
                 <Header />
+
+                <MessageSection />
 
                 <Sidebar />
 
