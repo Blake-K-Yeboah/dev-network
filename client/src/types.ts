@@ -35,6 +35,14 @@ export interface IPost {
     _id: string
 }
 
+export interface IMessage {
+    text: string,
+    sentOn: Date,
+    from: string,
+    to: string,
+    seen: boolean
+}
+
 export interface ILoginErrorProps {
     error: string
 }
@@ -87,6 +95,14 @@ export interface ICommunityStore {
     setError: (err: string) => void
 }
 
+export interface IMessageStore {
+    fetchMessages: () => void,
+    messages: IMessage[] | null,
+    modalStatus: boolean,
+    toggleStatus: () => void,
+    error: string | null,
+    setError: (err: string) => void
+}
 // For Components with Stores as props
 export interface IStoreProps {
     [storeName: string]: any
