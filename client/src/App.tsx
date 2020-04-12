@@ -8,6 +8,7 @@ import { authStore } from './stores/authStore';
 import { projectStore } from './stores/projectStore';
 import { usersStore } from './stores/usersStore';
 import { communityStore } from './stores/communityStore';
+import { messageStore } from './stores/messageStore';
 
 // Import Provider
 import { Provider } from 'mobx-react';
@@ -33,7 +34,7 @@ const App: React.FC = () => {
   return (
     <Router>
 
-      <Provider authStore={authStore} projectStore={projectStore} usersStore={usersStore} communityStore={communityStore}>
+      <Provider authStore={authStore} projectStore={projectStore} usersStore={usersStore} communityStore={communityStore} messageStore={messageStore}>
 
         <Route path='*' component={CookiePopup} />
 
