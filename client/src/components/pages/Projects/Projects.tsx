@@ -10,6 +10,7 @@ import UsersPopup from '../../popups/UsersPopup';
 import Container from '../../layout/Container';
 import { IStoreProps } from '../../../types';
 import MessageSection from '../../message/MessageSection';
+import MessageModal from '../../message/MessageModal';
 
 const Projects = inject("projectStore", "usersStore")(observer(({ projectStore, usersStore }: IStoreProps) => {
 
@@ -43,6 +44,8 @@ const Projects = inject("projectStore", "usersStore")(observer(({ projectStore, 
             </Container>
 
             <PostModal />
+
+            <MessageModal />
 
             <div className={`overlay ${!projectStore.modalStatus ? 'hidden' : ''}`} onClick={() => projectStore.toggleStatus()}></div>
 
