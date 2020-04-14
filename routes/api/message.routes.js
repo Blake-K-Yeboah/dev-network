@@ -1,14 +1,21 @@
 const express = require('express');
-const router = express.Router();
-
 const Message = require('../../models/message.model');
 
-// NOTE: Req.IO to use socketio
+const messageRouter = (io) => {
+    let router = express.Router();
 
-router.get('/', (req, res) => {
-    Message.find({}).then(messages => {
-        return res.json(messages);
+    router.get('/', (req, res) => {
+        Message.find({}).then(messages => {
+            return res.json(messages);
+        });
     });
-});
 
-module.exports = router;
+    // Socket.io Conection
+    io.on('connection', () => {
+        console.log('a user is connected')
+    })
+
+    return router;
+}
+
+module.exports = messageRouter;
