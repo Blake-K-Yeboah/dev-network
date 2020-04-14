@@ -1,6 +1,9 @@
 // Require Express
 const express = require('express');
 
+// Require CORS
+const cors = require('cors');
+
 // Require Mongoose 
 const mongoose = require('mongoose');
 
@@ -37,6 +40,12 @@ app.use(
 
 app.use(bodyParser.json());
 
+// Enable Cors
+app.use(cors({
+    origin: 'http://localhost:3000',
+    credentials: true
+}));
+
 // DB Config
 const db = require("./config/keys").mongoURI;
 
@@ -69,24 +78,16 @@ app.use('/api/projects', projects);
 app.use('/api/community', community);
 
 // Bring in Socket.io + Http module
-const http = require('http').Server(app);
-const io = require('socket.io')(http);
-
-// SocketIO Middleware
-const socketIoMiddleware = (req, res, next) => {
-    req.io = io;
-    next();
-}
-
-app.use(socketIoMiddleware);
+const server = require('http').Server(app);
+const io = require('socket.io')(server);
 
 // Message Route
-app.use('/api/messages', message);
+app.use('/api/messages', message(io));
 
 // Define Port
 const port = process.env.PORT || 5000;
 
 // Listen on Port
-app.listen(port, () => {
+server.listen(port, () => {
     console.log('Server Running on port ' + port);
 });
