@@ -22,6 +22,9 @@ const projects = require('./routes/api/project.routes');
 // Require Community Router
 const community = require('./routes/api/community.routes');
 
+// Require Message Router
+const message = require('./routes/api/message.routes');
+
 // Initialize Express
 const app = express();
 
@@ -62,7 +65,23 @@ app.use('/api/users', users);
 // Project Route
 app.use('/api/projects', projects);
 
+// Community Route
 app.use('/api/community', community);
+
+// Bring in Socket.io + Http module
+const http = require('http').Server(app);
+const io = require('socket.io')(http);
+
+// SocketIO Middleware
+const socketIoMiddleware = (req, res, next) => {
+    req.io = io;
+    next();
+}
+
+app.use(socketIoMiddleware);
+
+// Message Route
+app.use('/api/messages', message);
 
 // Define Port
 const port = process.env.PORT || 5000;
