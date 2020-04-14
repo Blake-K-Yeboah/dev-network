@@ -1,24 +1,6 @@
 // Export Validation Function
 module.exports = function validateRegisterInput(data) {
 
-    // Username Check Function (for symbols)
-    const usernameCheck = () => {
-        let result = true;
-        let disallowedSymbols = ['@', '.', ',', '!', '%', '$', '#', '^', '&', '*', '(', ')'];
-
-        if (data.username) {
-            disallowedSymbols.forEach(symbol => {
-                if (data.username.includes(symbol)) {
-                    result = false;
-                }
-            });
-        } else {
-            return false
-        }
-
-        return result;
-    }
-
     // Define Errors
     let errors = {}
 
@@ -32,7 +14,7 @@ module.exports = function validateRegisterInput(data) {
         errors.lastname = "Last name field is requried";
     }
 
-    if (!data.username || !usernameCheck()) {
+    if (!data.username) {
         errors.username = "Username field doesn't meet requirements.";
     }
 
