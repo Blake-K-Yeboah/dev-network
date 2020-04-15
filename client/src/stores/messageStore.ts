@@ -26,6 +26,18 @@ class messagestore {
     setError(err: string) {
         this.error = err;
     }
+
+    @observable activeFollower: string | null = null;
+
+    @action
+    setActiveFollower(follower: string) {
+        this.activeFollower = follower;
+    }
+
+    @action
+    pushMessage(message: IMessage) {
+        if (this.messages) this.messages.push(message);
+    }
 }
 
 export const messageStore: IMessageStore = new messagestore();
