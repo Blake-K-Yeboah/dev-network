@@ -36,6 +36,7 @@ export interface IPost {
 }
 
 export interface IMessage {
+    _id: string,
     text: string,
     sentOn: Date,
     from: string,
@@ -101,8 +102,12 @@ export interface IMessageStore {
     modalStatus: boolean,
     toggleStatus: () => void,
     error: string | null,
-    setError: (err: string) => void
+    setError: (err: string) => void,
+    activeFollower: string | null,
+    setActiveFollower: (follower: string) => void,
+    pushMessage: (message: IMessage) => void
 }
+
 // For Components with Stores as props
 export interface IStoreProps {
     [storeName: string]: any
