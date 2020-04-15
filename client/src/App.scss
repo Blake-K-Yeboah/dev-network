@@ -886,7 +886,7 @@ body {
                     bottom: 167.5px;
                 }
 
-                @include scrollbar()
+                @include scrollbar();
 
 
                 &.hidden {
@@ -2096,6 +2096,127 @@ div.success {
     overflow-y: scroll;
     @include scrollbar();
 
+    .accordion-section {
+        height: 200px;
+        transition: .3s ease-in-out;
+        opacity: 1;
+        position:relative;
+        z-index:1;
+        border: .5px solid lighten($lighterGrey, 35%);
+        border-top: none;
+        border-right: none;
+
+        &.hidden {
+            height: 0;
+            opacity: 0;
+            z-index:-1;
+        }
+
+
+        .input-section {
+            position:absolute;
+            bottom: 15px;
+            left: 50%;
+            transform:translateX(-50%);
+            width: 100%;
+
+            .message-input {
+                width: 60%;
+                height: 25px;
+                background: lighten($lighterGrey, 45%);
+                border:0;
+                border-radius: 10px;
+                padding-left: 10px;
+                margin-left: 40px;
+                transition: .25s ease-in-out;
+
+                &:focus {
+                    outline: none;
+                    box-shadow: 0px 0px 5px #999;
+                }
+            }
+
+            .message-send-btn {
+                position:absolute;
+                right: 40px;
+                width: 20%;
+                height: 25px;
+                border-radius: 10px;
+                border: none;
+                background: $primaryColor;
+                color: #fff;
+                transition: .25s ease-in-out;
+                cursor: pointer;
+                
+                &:hover {
+                    background: lighten($primaryColor, 10%);
+                }
+            }
+
+        }
+
+        .messages {
+            position:relative;
+            top: 25px;
+            padding: 0px 40px;
+            position: relative;
+            overflow-x: hidden;
+            overflow-y: scroll;
+            height: 60%;
+
+            &::-webkit-scrollbar {
+                width:3px;
+            }
+        
+            &::-webkit-scrollbar-thumb {
+                background: #ccc;
+                border-radius: 2px;
+            }
+        
+            &::-webkit-scrollbar-track {
+                background: transparent;
+            }
+            
+            .message-container {
+                min-height: 40px;
+                position: relative;
+                margin-bottom: 10px;
+
+                .message-content {
+                    padding: 5px 15px;
+                    border-radius: 10px;
+                    color: #fff;
+                    position:relative;
+                    top: 10px;
+                }
+
+                .sent-text {
+                    color: $lighterGrey;
+                    position: relative;
+                    top: 15px;
+                }
+
+                &.primary {
+                    text-align: right;
+
+                    .message-content {
+                        background: $primaryColor;
+                    }
+                }
+
+                &.secondary {
+                    left: 0;
+
+                    .message-content {
+                        background: $lighterGrey;
+                    }
+
+                }
+
+            }
+        }
+    }
+
     .accordion-head {
         width: 100%;
         height: 55px;
@@ -2107,11 +2228,15 @@ div.success {
         cursor:crosshair;
         
         &:hover {
-            background: lighten($lighterGrey, 35%);
+            background: lighten($lighterGrey, 40%);
         }
 
         &:first-of-type {
             border-top: .5px solid lighten($lighterGrey, 35%);
+        }
+
+        &.active {
+            background: lighten($lighterGrey, 35%);
         }
 
         .profile-pic {
