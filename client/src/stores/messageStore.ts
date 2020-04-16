@@ -2,7 +2,7 @@ import { IMessageStore, IMessage } from "../types";
 import { action, observable } from "mobx";
 import Axios from 'axios';
 
-class messagestore {
+export class messagestore {
 
     @action
     async fetchMessages() {

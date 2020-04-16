@@ -2,7 +2,7 @@ import { observable, action } from 'mobx';
 import Axios from 'axios';
 import { IPost, ICommunityStore } from '../types';
 
-class communitystore {
+export class communitystore {
 
     @action
     async fetchPosts() {

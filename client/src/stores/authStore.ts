@@ -5,7 +5,7 @@ import jwt_decode from 'jwt-decode';
 
 import { Iuser, IAuthStore } from '../types';
 
-class authstore {
+export class authstore {
 
     // Store JWT Token
     @observable token: string | null = document.cookie.split('=')[1];

@@ -2,7 +2,7 @@ import { action, observable } from 'mobx';
 import Axios from 'axios';
 import { Iuser, IUsersStore } from '../types';
 
-class usersstore {
+export class usersstore {
 
     @action async fetchUsers() {
         await Axios.get('/api/users').then(res => this.users = res.data.reverse());
@@ -13,11 +13,11 @@ class usersstore {
     @observable activeUserIndex: number = 0;
 
     @action nextUser(): void {
-        usersStore.activeUserIndex += 1;
+        this.activeUserIndex += 1;
     }
 
     @action prevUser(): void {
-        usersStore.activeUserIndex -= 1;
+        this.activeUserIndex -= 1;
     }
 
     @observable searchModalStatus: boolean = false;

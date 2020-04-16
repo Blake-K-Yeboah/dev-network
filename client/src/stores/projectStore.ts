@@ -2,7 +2,7 @@ import { observable, action } from 'mobx';
 import { IProject, IProjectStore } from '../types';
 import Axios from 'axios';
 
-class projectstore {
+export class projectstore {
 
     @action
     async fetchProjects() {
