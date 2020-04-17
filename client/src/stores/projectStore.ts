@@ -16,11 +16,11 @@ export class projectstore {
     @observable activeProjectIndex: number = 0;
 
     @action nextProject(): void {
-        projectStore.activeProjectIndex += 1;
+        this.activeProjectIndex += 1;
     }
 
     @action prevProject(): void {
-        projectStore.activeProjectIndex -= 1;
+        this.activeProjectIndex -= 1;
     }
 
     @observable modalStatus: boolean = false;

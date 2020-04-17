@@ -16,11 +16,11 @@ export class communitystore {
     @observable activePostIndex: number = 0;
 
     @action nextPost(): void {
-        communityStore.activePostIndex += 1;
+        this.activePostIndex += 1;
     }
 
     @action prevPost(): void {
-        communityStore.activePostIndex -= 1;
+        this.activePostIndex -= 1;
     }
 
     @observable modalStatus: boolean = false;
