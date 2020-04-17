@@ -46,4 +46,28 @@ describe('UsersStore', () => {
 
     });
 
+    it('.setSearchQuery sets search query correctly', () => {
+
+        const store = new usersstore();
+
+        const query = 'Blake';
+
+        store.setSearchQuery(query);
+
+        expect(store.searchQuery).toBe(query);
+
+    });
+
+    it('.setActiveTab sets active tab correctly', () => {
+
+        const store = new usersstore();
+
+        const tab = 'Followers';
+
+        store.setActiveTab(tab);
+
+        expect(store.activeTab).toBe(tab);
+
+    });
+
 });
