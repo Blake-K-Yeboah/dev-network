@@ -75,50 +75,52 @@ const PostModal = inject('authStore', 'projectStore')(observer(({ authStore, pro
     }
 
     return (
-        <div className={`modal ${!projectStore.modalStatus ? 'hidden' : ''}`}>
-            <span className="close-icon" onClick={() => projectStore.toggleStatus()}>&times;</span>
-            <h1 className="title">Post A Project</h1>
-            <form className="modal-form" autoComplete="off" onSubmit={postProject}>
-                <div className="form-group">
-                    <div className="input-container">
-                        <label htmlFor="title" className={`input-label ${userInput.title !== '' ? 'valid' : ''} ${authStore.error && authStore.error.title ? 'error' : ''}`}>Title</label>
-                        <input type="text" className={`input ${authStore.error && authStore.error.title ? 'error' : ''}`} id="title" value={userInput.title} onBlur={onBlur} onFocus={onFocus} onChange={onChange} />
+        <>
+            <div className={`modal ${!projectStore.modalStatus ? 'hidden' : ''}`}>
+                <span className="close-icon" onClick={() => projectStore.toggleStatus()}>&times;</span>
+                <h1 className="title">Post A Project</h1>
+                <form className="modal-form" autoComplete="off" onSubmit={postProject}>
+                    <div className="form-group">
+                        <div className="input-container">
+                            <label htmlFor="title" className={`input-label ${userInput.title !== '' ? 'valid' : ''} ${authStore.error && authStore.error.title ? 'error' : ''}`}>Title</label>
+                            <input type="text" className={`input ${authStore.error && authStore.error.title ? 'error' : ''}`} id="title" value={userInput.title} onBlur={onBlur} onFocus={onFocus} onChange={onChange} />
+                        </div>
                     </div>
-                </div>
-                <div className="form-group">
-                    <div className="input-container">
-                        <label htmlFor="description" className={`input-label ${userInput.description !== '' ? 'valid' : ''} ${authStore.error && authStore.error.description ? 'error' : ''}`}>Description</label>
-                        <input type="text" className={`input ${authStore.error && authStore.error.description ? 'error' : ''}`} id="description" value={userInput.description} onBlur={onBlur} onFocus={onFocus} onChange={onChange} />
+                    <div className="form-group">
+                        <div className="input-container">
+                            <label htmlFor="description" className={`input-label ${userInput.description !== '' ? 'valid' : ''} ${authStore.error && authStore.error.description ? 'error' : ''}`}>Description</label>
+                            <input type="text" className={`input ${authStore.error && authStore.error.description ? 'error' : ''}`} id="description" value={userInput.description} onBlur={onBlur} onFocus={onFocus} onChange={onChange} />
+                        </div>
                     </div>
-                </div>
-                <div className="form-group">
-                    <div className="input-container">
-                        <label htmlFor="tags" className={`input-label ${userInput.tags !== '' ? 'valid' : ''} ${authStore.error && authStore.error.tags ? 'error' : ''}`}>Tags</label>
-                        <input type="text" className={`input ${authStore.error && authStore.error.tags ? 'error' : ''}`} id="tags" value={userInput.tags} onBlur={onBlur} onFocus={onFocus} onChange={onChange} />
+                    <div className="form-group">
+                        <div className="input-container">
+                            <label htmlFor="tags" className={`input-label ${userInput.tags !== '' ? 'valid' : ''} ${authStore.error && authStore.error.tags ? 'error' : ''}`}>Tags</label>
+                            <input type="text" className={`input ${authStore.error && authStore.error.tags ? 'error' : ''}`} id="tags" value={userInput.tags} onBlur={onBlur} onFocus={onFocus} onChange={onChange} />
+                        </div>
                     </div>
-                </div>
-                <div className="form-group form-grid">
-                    <div className="input-container">
-                        <label htmlFor="preview" className={`input-label ${userInput.preview !== '' ? 'valid' : ''}`}>Preview Link</label>
-                        <input type="text" className="input" id="preview" value={userInput.preview} onBlur={onBlur} onFocus={onFocus} onChange={onChange} />
+                    <div className="form-group form-grid">
+                        <div className="input-container">
+                            <label htmlFor="preview" className={`input-label ${userInput.preview !== '' ? 'valid' : ''}`}>Preview Link</label>
+                            <input type="text" className="input" id="preview" value={userInput.preview} onBlur={onBlur} onFocus={onFocus} onChange={onChange} />
+                        </div>
+                        <div className="input-container">
+                            <label htmlFor="github" className={`input-label ${userInput.github !== '' ? 'valid' : ''}`}>Github Link</label>
+                            <input type="text" className="input" id="github" value={userInput.github} onBlur={onBlur} onFocus={onFocus} onChange={onChange} />
+                        </div>
                     </div>
-                    <div className="input-container">
-                        <label htmlFor="github" className={`input-label ${userInput.github !== '' ? 'valid' : ''}`}>Github Link</label>
-                        <input type="text" className="input" id="github" value={userInput.github} onBlur={onBlur} onFocus={onFocus} onChange={onChange} />
-                    </div>
-                </div>
-                <div className="form-group">
-                    <div className="input-container">
+                    <div className="form-group">
+                        <div className="input-container">
 
-                        <label htmlFor="file">Project Image: </label>
+                            <label htmlFor="file">Project Image: </label>
 
-                        <input type="file" id="file" onChange={e => fileChange(e.target.files)} style={{ marginLeft: 20 }} />
+                            <input type="file" id="file" onChange={e => fileChange(e.target.files)} style={{ marginLeft: 20 }} />
 
+                        </div>
                     </div>
-                </div>
-                <button type='submit' className="btn primary submit-btn">Post Project</button>
-            </form>
-        </div>
+                    <button type='submit' className="btn primary submit-btn">Post Project</button>
+                </form>
+            </div>
+        </>
     )
 }))
 
