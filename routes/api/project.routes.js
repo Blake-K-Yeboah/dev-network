@@ -63,7 +63,7 @@ router.post('/', (req, res) => {
         img = newName;
 
         // Upload File
-        file.mv(`/client/build/uploads/projects/${newName}`, err => {
+        file.mv(`./client/build/uploads/projects/${newName}`, err => {
             if (err) {
                 console.error(err);
                 return res.status(500).json({ error: 'Server Error. Try Again Later' });

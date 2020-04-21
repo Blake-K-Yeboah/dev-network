@@ -251,7 +251,7 @@ router.put('/:id/profilepic', (req, res) => {
         img = newName;
 
         // Upload File
-        file.mv(`/client/build/uploads/profile/${newName}`, err => {
+        file.mv(`./client/build/uploads/profile/${newName}`, err => {
             if (err) {
                 console.error(err);
                 return res.status(500).json({ error: 'Server Error. Try Again Later' });
