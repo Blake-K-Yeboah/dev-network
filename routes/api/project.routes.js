@@ -69,27 +69,28 @@ router.post('/', (req, res) => {
                 return res.status(500).json({ error: 'Server Error. Try Again Later' });
             }
         });
+
+        let tags = req.body.tags.replace(' ', '').split(',');
+
+        // Define New Post Model; 
+        const newProject = new Project({
+            title: req.body.title,
+            description: req.body.description,
+            img,
+            tags,
+            github,
+            preview,
+            userId: req.body.userId
+        });
+
+        newProject.save().then(project => res.json(project)).catch(err => res.json(err));
+
     } else {
 
         // Return Error if no image was uploaded
         return res.status(400).json({ error: 'You have to upload an image.' });
 
     }
-
-    let tags = req.body.tags.replace(' ', '').split(',');
-
-    // Define New Post Model; 
-    const newProject = new Project({
-        title: req.body.title,
-        description: req.body.description,
-        img,
-        tags,
-        github,
-        preview,
-        userId: req.body.userId
-    });
-
-    newProject.save().then(project => res.json(project)).catch(err => res.json(err));
 
 });
 
