@@ -61,7 +61,7 @@ const Project = inject('projectStore', 'authStore', 'usersStore')(observer(({ pr
     return (
         <>
             {project ? <div className="project">
-                <img className="project-img" alt={project.title} src={`/uploads/projects/${project.img}`} />
+                <img className="project-img" alt={project.title} src={require(`/uploads/projects/${project.img}`)} />
                 <h2 className="project-title">{project.title}</h2>
                 <p className="project-desc">{project.description}</p>
                 <ul className="project-tags">
