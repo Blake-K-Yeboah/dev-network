@@ -1889,6 +1889,9 @@ div.success {
 
     .user-profilepic {
         width: 25%;
+        height: 22.5%;
+        object-fit: cover;
+        object-position: 50% 50%;
         position:absolute;
         left:50%;
         top: 100px;
