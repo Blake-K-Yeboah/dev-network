@@ -321,7 +321,7 @@ router.put('/:id/header', (req, res) => {
         img = newName;
 
         // Upload File
-        file.mv(`./client/public/uploads/header/${newName}`, err => {
+        file.mv(`./client/build/uploads/header/${newName}`, err => {
             if (err) {
                 console.error(err);
                 return res.status(500).json({ error: 'Server Error. Try Again Later' });
