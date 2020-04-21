@@ -245,7 +245,7 @@ router.put('/:id/profilepic', (req, res) => {
         const file = req.files.file;
 
         // Define New Name for file
-        const newName = `${req.body.userId}.${file.name.split('.')[1]}`;
+        const newName = `${req.params.id}.${file.name.split('.')[1]}`;
 
         // Set Image (defined above)
         img = newName;
