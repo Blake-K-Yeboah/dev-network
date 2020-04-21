@@ -36,7 +36,7 @@ require("dotenv").config();
 // Initialize Express
 const app = express();
 
-app.use(express.static(path.join(__dirname, "client", "public")));
+app.use(express.static(path.join(__dirname, "client", "build")));
 
 // Bodyparser middleware
 app.use(
