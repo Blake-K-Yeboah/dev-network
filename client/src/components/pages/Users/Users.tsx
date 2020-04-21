@@ -8,6 +8,8 @@ import Header from './Header';
 import Sidebar from '../Projects/Sidebar';
 import SearchModal from './SearchModal';
 import { IStoreProps } from '../../../types';
+import MessageSection from '../../message/MessageSection';
+import MessageModal from '../../message/MessageModal';
 
 const Users = inject("usersStore")(observer(({ usersStore }: IStoreProps) => {
 
@@ -29,6 +31,8 @@ const Users = inject("usersStore")(observer(({ usersStore }: IStoreProps) => {
 
                 <Sidebar />
 
+                <MessageSection />
+
                 <Header />
 
                 <Footer />
@@ -36,6 +40,8 @@ const Users = inject("usersStore")(observer(({ usersStore }: IStoreProps) => {
             </Container>
 
             <SearchModal />
+
+            <MessageModal />
 
             <div className={`overlay ${!usersStore.searchModalStatus ? 'hidden' : ''}`} onClick={() => usersStore.toggleSearchModalStatus()}></div>
 

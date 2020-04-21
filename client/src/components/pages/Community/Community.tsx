@@ -9,6 +9,8 @@ import Sidebar from '../Projects/Sidebar'
 import Header from './Header'
 import CreateModal from './CreateModal'
 import { inject, observer } from 'mobx-react'
+import MessageSection from '../../message/MessageSection';
+import MessageModal from '../../message/MessageModal';
 
 const Community = inject("communityStore")(observer(({ communityStore }: IStoreProps) => {
     return (
@@ -27,6 +29,8 @@ const Community = inject("communityStore")(observer(({ communityStore }: IStoreP
 
                 <Sidebar />
 
+                <MessageSection />
+
                 <Header />
 
                 <Footer />
@@ -34,6 +38,8 @@ const Community = inject("communityStore")(observer(({ communityStore }: IStoreP
             </Container>
 
             <CreateModal />
+
+            <MessageModal />
 
             <div className={`overlay ${!communityStore.modalStatus ? 'hidden' : ''}`} onClick={() => communityStore.toggleStatus()}></div>
         </>
