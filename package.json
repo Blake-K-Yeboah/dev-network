@@ -27,7 +27,7 @@
   "scripts": {
     "client-install": "yarn install --prefix client",
     "start": "yarn install && node server.js",
-    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false yarn install --prefix client && cd client && yarn run build",
+    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false cd client && yarn install && yarn run build",
     "server": "nodemon server.js",
     "client": "cd client && yarn start",
     "dev": "concurrently -kill-others \"yarn run server\" \"yarn run client\""
