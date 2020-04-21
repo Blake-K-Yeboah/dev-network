@@ -7,6 +7,9 @@ const cors = require('cors');
 // Require Mongoose 
 const mongoose = require('mongoose');
 
+// Require Path
+const path = require('path');
+
 // Require body-parser
 const bodyParser = require('body-parser');
 
@@ -28,8 +31,12 @@ const community = require('./routes/api/community.routes');
 // Require Message Router
 const message = require('./routes/api/message.routes');
 
+require("dotenv").config();
+
 // Initialize Express
 const app = express();
+
+app.use(express.static(path.join(__dirname, "client", "build")));
 
 // Bodyparser middleware
 app.use(
@@ -47,7 +54,7 @@ app.use(cors({
 }));
 
 // DB Config
-const db = require("./config/keys").mongoURI;
+const db = process.env.MONGOURI || require("./config/keys").mongoURI;
 
 // Connect to MongoDB 
 mongoose
@@ -86,6 +93,10 @@ app.use('/api/messages', message(io));
 
 // Define Port
 const port = process.env.PORT || 5000;
+
+app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, "client", "build", "index.hmtl"));
+});
 
 // Listen on Port
 server.listen(port, () => {

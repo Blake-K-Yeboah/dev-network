@@ -10,6 +10,7 @@
     "body-parser": "^1.19.0",
     "concurrently": "^5.0.2",
     "cors": "^2.8.5",
+    "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "express-fileupload": "^1.1.6",
     "jsonwebtoken": "^8.5.1",
@@ -26,8 +27,12 @@
   "scripts": {
     "client-install": "yarn install --prefix client",
     "start": "yarn install && node server.js",
+    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false yarn install --prefix client && yarn run build --prefix client",
     "server": "nodemon server.js",
     "client": "cd client && yarn start",
     "dev": "concurrently -kill-others \"yarn run server\" \"yarn run client\""
+  },
+  "engines": {
+    "node": "12.13.1"
   }
 }
