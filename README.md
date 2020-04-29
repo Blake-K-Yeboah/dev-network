@@ -22,7 +22,7 @@ A social network for developers with plenty of cool features. Its built on the M
 - Express
 - React
 - MobX
-- Socket.IO
+- SocketIO
 - Typescript
 
 ---
