@@ -1,6 +1,6 @@
 # DevNetwork
 
-A social network for developers with plenty of cool features. Its built on the MERN stack and is deployed on Heroku.
+A social network for developers with plenty of cool and useful features. Its built on the MERN stack and is deployed on Heroku.
 
 ## Features
 
